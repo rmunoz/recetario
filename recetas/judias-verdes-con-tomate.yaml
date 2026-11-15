@@ -1,7 +1,7 @@
 titulo: Judías verdes con tomate
 tags: [judias-verdes, tomate, verdura, guarnicion, vegetariana, sin-gluten, sofrito]
 raciones: 2
-kcal_racion: 140
+kcal_racion: 155
 proteina_racion_g: 4
 aceite_cucharillas: 2
 momento: [guarnicion, comida, cena]
@@ -9,7 +9,8 @@ sodio: alto
 ingredientes:
   - texto: 1 bote de judías verdes troceadas en conserva (360 g escurridas)
     ingrediente: judias-verdes-en-conserva
-  - texto: 1 lata de tomate entero pelado
+  - texto: 1 lata de tomate entero pelado (400 g netos)
+    ingrediente: tomate-entero-pelado-lata
   - texto: ½ cebolla
   - texto: 1 cucharilla de pimiento choricero
   - texto: 1 cucharilla de pimentón dulce ahumado
