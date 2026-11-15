@@ -65,7 +65,8 @@ dias:
   jueves:
     ayuno: false
     comida:
-      tipo: plato_habitual
+      tipo: receta
+      receta: ensalada-simple-de-col
       texto: Salmón a la plancha con ensalada simple de col + 100 g de pan
       kcal: 627
       proteina_g: 40
