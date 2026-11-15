@@ -1,0 +1,24 @@
+titulo: Judías verdes con tomate
+tags: [judias-verdes, tomate, verdura, guarnicion, vegetariana, sin-gluten, sofrito]
+raciones: 2
+kcal_racion: 140
+proteina_racion_g: 4
+aceite_cucharillas: 2
+momento: [guarnicion, comida, cena]
+sodio: alto
+ingredientes:
+  - texto: 1 bote de judías verdes troceadas en conserva (360 g escurridas)
+    ingrediente: judias-verdes-en-conserva
+  - texto: 1 lata de tomate entero pelado
+  - texto: ½ cebolla
+  - texto: 1 cucharilla de pimiento choricero
+  - texto: 1 cucharilla de pimentón dulce ahumado
+  - texto: 1 cucharilla de azúcar
+  - texto: 2 cucharillas de aceite
+  - texto: una pizca de sal
+pasos:
+  - Picar la media cebolla en dados pequeños y sofreírla en una sartén con las 2 cucharillas de aceite a fuego bajo hasta que quede transparente.
+  - Añadir el pimentón ahumado y remover un momento para que suelte aroma sin quemarse, y a continuación el pimiento choricero, mezclando bien.
+  - Añadir el tomate entero pelado y machacarlo con una cuchara o tenedor hasta dejar trozos pequeños (no hace falta que quede triturado). Añadir el azúcar y la sal, remover y cocinar a fuego bajo hasta que se evapore casi todo el líquido, o al gusto.
+  - Añadir las judías verdes cocidas y mezclar bien con la salsa de tomate.
+fuente: propia
