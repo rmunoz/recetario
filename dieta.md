@@ -9,6 +9,7 @@ Las cifras marcadas con (est.) son estimaciones orientativas; en cuanto Ricardo 
 - Tope: **1800 kcal/día** (objetivo 1700-1800; no bajar de ~1600 sin que Ricardo lo pida explícitamente).
 - Proteína: objetivo de ~110 g/día.
 - Aceite: máximo **4 cucharillas al día** en total (~4-5 g y ~40 kcal cada una). Cuenta el aceite de las recetas y el de los platos habituales (el de una lata de caballa en aceite, si se toma ese día, cuenta aparte).
+- Pan: ración recomendada por el nutricionista de **100 g al día** (60 g si es tostado), como acompañamiento de las comidas en las que el pan no esté ya incluido en el propio plato (p. ej. una tostada). Es un tope diario, no una ración fija por comida: repártelo entre comida y cena según hagan falta, sin superarlo. Estimación (est.): 100 g de pan ≈ 260 kcal y 8 g de proteína; 60 g tostado ≈ 155 kcal y 5 g de proteína.
 - Se cocina para 2 personas (Ricardo y su mujer): las raciones del repositorio son por persona y el plan se calcula para Ricardo.
 
 ## Desayuno fijo (todos los días)

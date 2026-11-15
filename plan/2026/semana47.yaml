@@ -1,0 +1,195 @@
+semana: 2026-W47
+fecha_inicio: 2026-11-16
+fecha_fin: 2026-11-22
+dias:
+  lunes:
+    ayuno: true
+    comida:
+      tipo: receta
+      receta: judias-verdes-con-tomate
+      texto: Judías verdes con tomate + 150 g de patata cocida + 100 g de pan
+      kcal: 515
+      proteina_g: 14.5
+    cena:
+      tipo: plato_habitual
+      texto: Tostada pequeña de anchoa, tomate y pepinillo
+      kcal: 150
+      proteina_g: 9
+    totales:
+      kcal: 1185
+      proteina_g: 44.5
+      aceite_cucharillas: 1
+  martes:
+    ayuno: false
+    comida:
+      tipo: plato_habitual
+      texto: Filete de pavo a la plancha con arroz basmati y sofrito de media cebolla + 50 g de pan
+      kcal: 535
+      proteina_g: 43
+    merienda:
+      tipo: plato_habitual
+      texto: Jamón cocido con queso tierno
+      kcal: 165
+      proteina_g: 15
+    cena:
+      tipo: plato_habitual
+      texto: Sopa con 70 g de pasta de sopa + 50 g de pan
+      kcal: 310
+      proteina_g: 11
+    totales:
+      kcal: 1530
+      proteina_g: 90
+      aceite_cucharillas: 1
+  miercoles:
+    ayuno: false
+    comida:
+      tipo: receta
+      receta: lentejas-vegetarianas
+      texto: Lentejas vegetarianas con un puñado de arroz por persona + 50 g de pan
+      kcal: 550
+      proteina_g: 26
+    merienda:
+      tipo: plato_habitual
+      texto: Pescado azul en conserva
+      kcal: 135
+      proteina_g: 18
+    cena:
+      tipo: plato_habitual
+      texto: Tortilla de 2 huevos + 50 g de pan
+      kcal: 320
+      proteina_g: 17
+    totales:
+      kcal: 1525
+      proteina_g: 82
+      aceite_cucharillas: 1
+  jueves:
+    ayuno: false
+    comida:
+      tipo: plato_habitual
+      texto: Salmón a la plancha con ensalada simple de col + 100 g de pan
+      kcal: 627
+      proteina_g: 40
+    merienda:
+      tipo: plato_habitual
+      texto: Fruta de temporada
+      kcal: 80
+      proteina_g: 1
+    cena:
+      tipo: plato_habitual
+      texto: Tostada de atún con pimiento rojo y huevo duro
+      kcal: 255
+      proteina_g: 29
+    totales:
+      kcal: 1482
+      proteina_g: 91
+      aceite_cucharillas: 1.5
+  viernes:
+    ayuno: false
+    comida:
+      tipo: plato_habitual
+      texto: Hamburguesa casera con lechuga, tomate, cebolla y mostaza a la antigua + 150 g de patata al horno + 50 g de pan
+      kcal: 570
+      proteina_g: 33.5
+    merienda:
+      tipo: plato_habitual
+      texto: Jamón cocido con queso tierno
+      kcal: 165
+      proteina_g: 15
+    cena:
+      tipo: plato_habitual
+      texto: Sepia a la plancha + 50 g de pan
+      kcal: 260
+      proteina_g: 29
+    totales:
+      kcal: 1515
+      proteina_g: 98.5
+      aceite_cucharillas: 1.5
+  sabado:
+    ayuno: false
+    comida:
+      tipo: plato_habitual
+      texto: Pasta con tiras de jamón serrano y queso parmesano + 100 g de pan
+      kcal: 680
+      proteina_g: 30
+    merienda:
+      tipo: plato_habitual
+      texto: Fruta de temporada
+      kcal: 80
+      proteina_g: 1
+    cena:
+      tipo: plato_habitual
+      texto: Tostada de jamón cocido, queso fresco y naranja
+      kcal: 260
+      proteina_g: 22
+    totales:
+      kcal: 1540
+      proteina_g: 74
+      aceite_cucharillas: 1
+  domingo:
+    ayuno: true
+    comida:
+      tipo: receta
+      receta: coliflor-especiada-con-yogur-y-granada
+      texto: Coliflor especiada con yogur y granada + 100 g de pan
+      kcal: 375
+      proteina_g: 17
+    cena:
+      tipo: plato_habitual
+      texto: Ensalada de lechuga y tomate
+      kcal: 90
+      proteina_g: 3
+    totales:
+      kcal: 985
+      proteina_g: 41
+      aceite_cucharillas: 1.25
+recetas_nuevas:
+  - judias-verdes-con-tomate
+  - lentejas-vegetarianas
+  - ensalada-simple-de-col
+  - coliflor-especiada-con-yogur-y-granada
+resumen_semanal: >
+  Primera semana del histórico, así que las cuatro recetas del repositorio
+  cuentan como nuevas. Pescado azul 3 veces (anchoa, salmón, atún), cefalópodo
+  1 vez (sepia), legumbres solo 1 vez (lentejas, algo justo frente al
+  orientativo de 2-3), carne roja 1 vez (hamburguesa), ave 1 vez (pavo) y huevo
+  en 2 días. Buena variedad de técnicas y sin platos repetidos. El aceite se
+  queda siempre muy por debajo del límite de 4 cucharillas/día. Los días
+  normales rondan 1480-1540 kcal, algo por debajo del objetivo de 1700-1800
+  pese al pan y los acompañamientos de patata/arroz añadidos; lunes y domingo
+  son días de ayuno (cena temprana, sin merienda) y se quedan bajos a
+  propósito.
+lista_compra:
+  - 2 cebollas
+  - 4-5 tomates frescos (hamburguesa, ensalada, tostada y lentejas)
+  - 1 lata de tomate entero pelado
+  - 600 g de patatas (para cocer y para horno)
+  - 120 g de arroz basmati
+  - 80 g de arroz normal (para las lentejas)
+  - 70 g de pasta de sopa (fideos)
+  - 160 g de pasta tipo macarrones (sábado)
+  - pan del día (unos 100 g/persona repartidos entre comida y cena) y unas
+    rebanadas de pan de molde para las tostadas
+  - 300 g de jamón cocido
+  - 200 g de queso tierno
+  - 80 g de queso fresco
+  - 2 naranjas
+  - 2 latas de pescado azul en conserva (caballa, sardinas o atún, al gusto)
+  - 6 huevos
+  - 2 latas pequeñas de atún en conserva
+  - 1 lata pequeña de anchoas en conserva
+  - 1 bote de pepinillos
+  - 1 pimiento rojo
+  - 300-350 g de filete de pavo
+  - 60 g de jamón serrano
+  - 30 g de queso parmesano
+  - 300 g de carne picada (hamburguesas)
+  - mostaza a la antigua
+  - 1 lechuga
+  - 300 g de sepia
+  - 300 g de salmón
+  - 350 g de col (ensalada simple de col, receta doblada para 2)
+  - 4 piezas de fruta de temporada (meriendas)
+  - 1 yogur griego 0 %
+  - semillas de granada (o 1 granada)
+  - ½ coliflor mediana (unos 500 g)
+  - 1 bote de judías verdes troceadas en conserva (360 g escurridas)
