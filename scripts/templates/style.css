@@ -94,8 +94,20 @@ main.grid {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 1rem 1.1rem;
+  overflow: hidden;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--color-accent-soft);
+}
+
+.card-body {
+  padding: 1rem 1.1rem;
 }
 
 /* Only on devices that actually hover (mouse/trackpad). On touch, a

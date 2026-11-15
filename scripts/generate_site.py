@@ -163,14 +163,27 @@ def render_card(recipe):
     slug = recipe["_slug"]
     title = recipe.get("titulo", slug)
     tags = recipe.get("tags") or []
+    imagen = recipe.get("imagen")
+    if imagen:
+        image_html = (
+            f'<img class="card-image" src="{html.escape(image_src(imagen))}" '
+            f'alt="" loading="lazy">'
+        )
+    else:
+        # Same reserved slot, plain accent background, so cards without a
+        # photo still line up with the ones that have one.
+        image_html = '<div class="card-image" aria-hidden="true"></div>'
     # The card itself is a link to the recipe, but tags are links too (to
     # filter by tag), and an <a> can't contain another <a>. card-link is an
     # invisible overlay instead, see .card/.card-link in style.css.
     return f"""<div class="card" data-search="{search_text(recipe)}" data-tags="{html.escape('|'.join(tags))}">
   <a class="card-link" href="recetas/{html.escape(slug)}.html" aria-label="{html.escape(title)}"></a>
-  <h3>{html.escape(title)}</h3>
-  <div class="badges">{recipe_badges(recipe)}</div>
-  <div class="tags">{render_tags(tags, "index.html")}</div>
+  {image_html}
+  <div class="card-body">
+    <h3>{html.escape(title)}</h3>
+    <div class="badges">{recipe_badges(recipe)}</div>
+    <div class="tags">{render_tags(tags, "index.html")}</div>
+  </div>
 </div>"""
 
 
