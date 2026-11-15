@@ -19,6 +19,7 @@ import json
 import shutil
 import sys
 import unicodedata
+from datetime import date
 from pathlib import Path
 from urllib.parse import quote
 
@@ -30,14 +31,27 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 RECIPES_DIR = ROOT / "recetas"
+PLAN_DIR = ROOT / "plan"
 TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
 DOCS_DIR = ROOT / "docs"
 RECIPES_HTML_DIR = DOCS_DIR / "recetas"
+PLAN_HTML_DIR = DOCS_DIR / "plan"
 ASSETS_DIR = DOCS_DIR / "assets"
 
 REQUIRED_FIELDS = [
     "titulo", "tags", "raciones", "kcal_racion", "proteina_racion_g",
     "aceite_cucharillas", "ingredientes", "pasos",
+]
+REQUIRED_PLAN_FIELDS = ["semana", "fecha_inicio", "fecha_fin", "dias", "resumen_semanal"]
+DAY_KEYS = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"]
+DAY_LABELS = {
+    "lunes": "Lunes", "martes": "Martes", "miercoles": "Miércoles",
+    "jueves": "Jueves", "viernes": "Viernes", "sabado": "Sábado", "domingo": "Domingo",
+}
+MONTH_ABBR_ES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+MONTH_NAMES_ES = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
 ]
 
 
@@ -65,6 +79,44 @@ def load_recipes():
         recipes.append(data)
     recipes.sort(key=lambda r: normalize(r.get("titulo", r["_slug"])))
     return recipes
+
+
+def load_plans():
+    """Weekly plans are optional: no plan/ yet just means no history to show."""
+    if not PLAN_DIR.exists():
+        return []
+    plans = []
+    for path in sorted(PLAN_DIR.rglob("*.yaml")):
+        with path.open(encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+        if not isinstance(data, dict):
+            print(f"Warning: {path} has an unexpected format, skipping.", file=sys.stderr)
+            continue
+        missing = [field for field in REQUIRED_PLAN_FIELDS if field not in data]
+        if missing:
+            print(f"Warning: {path.name} is missing {', '.join(missing)}; publishing it as-is.", file=sys.stderr)
+        # Prefix with the year folder (plan/YYYY/semanaXX.yaml) so two different
+        # years' "semana47" don't collide once flattened into docs/plan/*.html.
+        data["_slug"] = f"{path.parent.name}-{path.stem}" if path.parent != PLAN_DIR else path.stem
+        plans.append(data)
+    plans.sort(key=lambda p: str(p.get("fecha_inicio", "")), reverse=True)
+    return plans
+
+
+def to_date(value):
+    """PyYAML parses an unquoted YYYY-MM-DD as a date already; strings need parsing."""
+    if isinstance(value, date):
+        return value
+    return date.fromisoformat(str(value))
+
+
+def format_date_range(inicio, fin):
+    i, f = to_date(inicio), to_date(fin)
+    if i.year == f.year and i.month == f.month:
+        return f"{i.day}-{f.day} {MONTH_ABBR_ES[i.month - 1]} {i.year}"
+    if i.year == f.year:
+        return f"{i.day} {MONTH_ABBR_ES[i.month - 1]} - {f.day} {MONTH_ABBR_ES[f.month - 1]} {i.year}"
+    return f"{i.day} {MONTH_ABBR_ES[i.month - 1]} {i.year} - {f.day} {MONTH_ABBR_ES[f.month - 1]} {f.year}"
 
 
 def badge(text):
@@ -137,6 +189,7 @@ def render_index_html(recipes):
   <p class="subtitle">Dieta hipocalórica para 2 — {len(recipes)} recetas</p>
   <input id="search" type="search" placeholder="Buscar por título, tag o momento…" autofocus>
   <p id="counter" class="counter"></p>
+  <p class="nav-link"><a href="plan/index.html">Ver planes semanales &rarr;</a></p>
 </header>
 <main class="grid">
 {cards_html}
@@ -233,14 +286,181 @@ el micrófono, los botones de abajo funcionan igual.
 """
 
 
+def render_meal_cell(meal, recipes_by_slug):
+    if not meal:
+        return '<span class="plan-empty">&mdash;</span>'
+    texto = html.escape(str(meal.get("texto", "?")))
+    stats = []
+    if meal.get("kcal") is not None:
+        stats.append(f"{meal['kcal']} kcal")
+    if meal.get("proteina_g") is not None:
+        stats.append(f"{meal['proteina_g']} g prot.")
+    stats_html = f' <span class="plan-meal-stats">({", ".join(stats)})</span>' if stats else ""
+    slug = meal.get("receta")
+    if meal.get("tipo") == "receta" and slug in recipes_by_slug:
+        return f'<a href="../recetas/{html.escape(slug)}.html">{texto}</a>{stats_html}'
+    return f"{texto}{stats_html}"
+
+
+def render_plan_week_html(plan, recipes_by_slug):
+    semana = plan.get("semana", plan["_slug"])
+    inicio, fin = plan.get("fecha_inicio"), plan.get("fecha_fin")
+    date_range = format_date_range(inicio, fin) if inicio and fin else ""
+    dias = plan.get("dias") or {}
+
+    rows = []
+    for key in DAY_KEYS:
+        day = dias.get(key) or {}
+        totales = day.get("totales") or {}
+        total_parts = []
+        if totales.get("kcal") is not None:
+            total_parts.append(f"{totales['kcal']} kcal")
+        if totales.get("proteina_g") is not None:
+            total_parts.append(f"{totales['proteina_g']} g prot.")
+        if totales.get("aceite_cucharillas") is not None:
+            total_parts.append(f"{totales['aceite_cucharillas']} cuch. aceite")
+        total_html = " &middot; ".join(total_parts) or "?"
+        row_class = ' class="plan-day-ayuno"' if day.get("ayuno") else ""
+        ayuno_badge = " " + badge("ayuno") if day.get("ayuno") else ""
+        rows.append(f"""<tr{row_class}>
+  <td>{html.escape(DAY_LABELS[key])}{ayuno_badge}</td>
+  <td>{render_meal_cell(day.get("comida"), recipes_by_slug)}</td>
+  <td>{render_meal_cell(day.get("merienda"), recipes_by_slug)}</td>
+  <td>{render_meal_cell(day.get("cena"), recipes_by_slug)}</td>
+  <td class="plan-total">{total_html}</td>
+</tr>""")
+    rows_html = "\n".join(rows)
+
+    sections = []
+    resumen = plan.get("resumen_semanal")
+    if resumen:
+        sections.append(f"<h2>Resumen de la semana</h2>\n<p>{html.escape(str(resumen))}</p>")
+
+    nuevas = plan.get("recetas_nuevas") or []
+    if nuevas:
+        pills = "".join(
+            f'<a class="tag" href="../recetas/{html.escape(slug)}.html">'
+            f'{html.escape(recipes_by_slug.get(slug, {}).get("titulo", slug))}</a>'
+            for slug in nuevas
+        )
+        sections.append(f'<h2>Receta nueva esta semana</h2>\n<div class="tags">{pills}</div>')
+
+    compra = plan.get("lista_compra") or []
+    if compra:
+        items = "\n".join(f"<li>{html.escape(str(item))}</li>" for item in compra)
+        sections.append(f'<h2>Lista de la compra (orientativa)</h2>\n<ul class="shopping-list">\n{items}\n</ul>')
+
+    return f"""<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semana {html.escape(str(semana))} &mdash; Recetas de Ricardo</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="back-link" href="index.html">&larr; Todos los planes</a>
+<article>
+<h1>Semana {html.escape(str(semana))}</h1>
+<p class="subtitle">{html.escape(date_range)}</p>
+<table class="plan-table">
+<thead><tr><th>Día</th><th>Comida</th><th>Merienda</th><th>Cena</th><th>Total del día</th></tr></thead>
+<tbody>
+{rows_html}
+</tbody>
+</table>
+<p class="plan-note">Desayuno fijo todos los días (no se repite aquí, ver <code>dieta.md</code>); los totales ya lo incluyen. Las cifras son estimaciones, con un margen real de ±10&nbsp;%.</p>
+{"".join(sections)}
+</article>
+</body>
+</html>
+"""
+
+
+def render_plan_card(plan, recipes_by_slug):
+    slug = plan["_slug"]
+    semana = plan.get("semana", slug)
+    inicio, fin = plan.get("fecha_inicio"), plan.get("fecha_fin")
+    date_range = format_date_range(inicio, fin) if inicio and fin else ""
+    year = str(to_date(inicio).year) if inicio else ""
+    month = f"{to_date(inicio).month:02d}" if inicio else ""
+    resumen = str(plan.get("resumen_semanal") or "")
+    resumen_short = (resumen[:140].rsplit(" ", 1)[0] + "…") if len(resumen) > 140 else resumen
+    nuevas = plan.get("recetas_nuevas") or []
+    nuevas_badge = ""
+    if nuevas:
+        label = "1 receta nueva" if len(nuevas) == 1 else f"{len(nuevas)} recetas nuevas"
+        nuevas_badge = badge(label)
+
+    return f"""<div class="card week-card" data-year="{html.escape(year)}" data-month="{html.escape(month)}">
+  <a class="card-link" href="{html.escape(slug)}.html" aria-label="Semana {html.escape(str(semana))}"></a>
+  <h3>Semana {html.escape(str(semana))}</h3>
+  <p class="week-dates">{html.escape(date_range)}</p>
+  <div class="badges">{nuevas_badge}</div>
+  <p class="week-summary">{html.escape(resumen_short)}</p>
+</div>"""
+
+
+def render_plan_index_html(plans, recipes_by_slug):
+    if not plans:
+        filters_html = ""
+        body_html = '<p class="empty-state">Todavía no hay planes semanales guardados.</p>'
+    else:
+        years = sorted(
+            {str(to_date(p["fecha_inicio"]).year) for p in plans if p.get("fecha_inicio")}, reverse=True
+        )
+        months_present = sorted(
+            {to_date(p["fecha_inicio"]).month for p in plans if p.get("fecha_inicio")}
+        )
+        year_chips = '<button type="button" class="chip active" data-filter-year="">Todos</button>' + "".join(
+            f'<button type="button" class="chip" data-filter-year="{y}">{y}</button>' for y in years
+        )
+        month_chips = '<button type="button" class="chip active" data-filter-month="">Todos</button>' + "".join(
+            f'<button type="button" class="chip" data-filter-month="{m:02d}">{MONTH_NAMES_ES[m - 1]}</button>'
+            for m in months_present
+        )
+        filters_html = f"""<div class="plan-filters">
+  <div class="chip-group" id="year-filters" aria-label="Filtrar por año">{year_chips}</div>
+  <div class="chip-group" id="month-filters" aria-label="Filtrar por mes">{month_chips}</div>
+</div>
+<p id="plan-counter" class="counter"></p>
+"""
+        cards_html = "\n".join(render_plan_card(p, recipes_by_slug) for p in plans)
+        body_html = f'<main class="grid" id="plan-grid">\n{cards_html}\n</main>'
+
+    return f"""<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planes semanales &mdash; Recetas de Ricardo</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="back-link" href="../index.html">&larr; Recetas</a>
+<header>
+  <h1>Planes semanales</h1>
+  <p class="subtitle">Histórico de menús semanales &mdash; {len(plans)} semana{"s" if len(plans) != 1 else ""}</p>
+</header>
+{filters_html}{body_html}
+<footer>
+  <p><a href="https://github.com/rmunoz/recetario">Código fuente en GitHub</a></p>
+</footer>
+<script src="../assets/plan.js" defer></script>
+</body>
+</html>
+"""
+
+
 def copy_assets():
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
-    for name in ("style.css", "search.js", "voice.js"):
+    for name in ("style.css", "search.js", "voice.js", "plan.js"):
         shutil.copyfile(TEMPLATES_DIR / name, ASSETS_DIR / name)
 
 
 def main():
     recipes = load_recipes()
+    recipes_by_slug = {r["_slug"]: r for r in recipes}
 
     if RECIPES_HTML_DIR.exists():
         shutil.rmtree(RECIPES_HTML_DIR)
@@ -253,7 +473,18 @@ def main():
 
     (DOCS_DIR / "index.html").write_text(render_index_html(recipes), encoding="utf-8")
 
-    print(f"Generated {len(recipes)} recipes in {DOCS_DIR}")
+    plans = load_plans()
+    if PLAN_HTML_DIR.exists():
+        shutil.rmtree(PLAN_HTML_DIR)
+    PLAN_HTML_DIR.mkdir(parents=True, exist_ok=True)
+
+    for plan in plans:
+        destination = PLAN_HTML_DIR / f"{plan['_slug']}.html"
+        destination.write_text(render_plan_week_html(plan, recipes_by_slug), encoding="utf-8")
+
+    (PLAN_HTML_DIR / "index.html").write_text(render_plan_index_html(plans, recipes_by_slug), encoding="utf-8")
+
+    print(f"Generated {len(recipes)} recipes and {len(plans)} weekly plans in {DOCS_DIR}")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ on:
     paths:
       - "recetas/**"
       - "ingredientes/**"
+      - "plan/**"
       - "scripts/**"
 
 permissions:

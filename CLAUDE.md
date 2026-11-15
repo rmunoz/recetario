@@ -78,6 +78,12 @@ imagen: https://ejemplo.com/foto.jpg          # opcional; si no hay, se omite la
 
 El esquema completo y un ejemplo están en `.claude/skills/receta-adaptada/references/`.
 
+## Formato de plan semanal guardado
+
+Cuando se guarda un plan (lo pide Ricardo tras ajustar lo que la skill propuso en el chat), se crea `plan/YYYY/semanaXX.yaml`: cabecera con `semana` (id ISO `AAAA-Wnn`), `fecha_inicio`/`fecha_fin`, los 7 días (`dias.lunes`...`dias.domingo`) con `comida`/`merienda`/`cena` (cada una con `tipo`: `receta`, `plato_habitual` o `pauta_base`, `texto`, `kcal`, `proteina_g`, y `receta` con el slug si `tipo: receta`) y `totales` del día, más `recetas_nuevas`, `resumen_semanal` y `lista_compra` (opcional, orientativa) a nivel de semana. El esquema completo y un ejemplo están en `.claude/skills/plan-semanal-comidas/references/esquema-plan.md`.
+
+Este fichero se publica tal cual en `docs/plan/` (ver "Sitio estático" más abajo): no incluyas en `resumen_semanal` ni en `lista_compra` nada que Ricardo no quiera ver en la web pública.
+
 ## Ingredientes
 
 Fichero `.yaml` en `ingredientes/` por ingrediente, nombre en slug: `nombre`, `unidad_ref` (a qué cantidad se refieren las cifras), `kcal`, `proteina_g`, `grasa_g`, `hidratos_g` y `fuente` (`etiqueta` si el dato viene del envase real de Ricardo, o `estimado`). Campos opcionales: `categoria`, `grasa_saturada_g`/`grasa_monoinsaturada_g`/`grasa_poliinsaturada_g`, `azucares_g`, `fibra_g`, `sal_g`, `omega3_g`, `otros` (vitaminas/minerales sueltos) y `nota` (p. ej. equivalencia en cucharadas). Esquema completo y ejemplo en `.claude/skills/receta-adaptada/references/esquema-ingrediente.md`.
@@ -93,19 +99,19 @@ No inventes un ingrediente nuevo en este directorio por iniciativa propia: lo cr
 ## Skills
 
 - `receta-adaptada`: se usa cuando Ricardo pega una receta o dicta una propia. Adapta (si procede), escala, estima kcal, valora el encaje y crea el fichero.
-- `plan-semanal-comidas`: monta la semana con el desayuno fijo, comida, cena y merienda opcional, respetando los límites de arriba. Para leer las recetas usa `python .claude/skills/plan-semanal-comidas/scripts/read_recipes.py recetas/` (necesita PyYAML).
+- `plan-semanal-comidas`: monta la semana con el desayuno fijo, comida, cena y merienda opcional, respetando los límites de arriba, e intenta incluir cada semana alguna receta que no se haya usado en semanas anteriores. Para leer las recetas usa `python .claude/skills/plan-semanal-comidas/scripts/read_recipes.py recetas/`, y para mirar el histórico de planes guardados, `python .claude/skills/plan-semanal-comidas/scripts/read_plans.py plan/` (ambos necesitan PyYAML). La generación del plan sigue siendo siempre a través de la skill (no automática), para poder ajustarlo antes de comitearlo.
 
 Cuando cambie una convención, actualiza a la vez este fichero y la skill afectada para que no se contradigan.
 
 ## Sitio estático (GitHub Pages)
 
-`scripts/generate_site.py` lee `recetas/*.yaml` y genera `docs/`: un listado (`docs/index.html`) con buscador en JS por título/tags/momento (sin backend, sin dependencias externas) y una página por receta (`docs/recetas/<slug>.html`). Todo client-side. El código del generador (nombres, comentarios) está en inglés; el texto que se ve en la página sigue en español, como el resto del contenido del repositorio.
+`scripts/generate_site.py` lee `recetas/*.yaml` y `plan/**/*.yaml` y genera `docs/`: un listado de recetas (`docs/index.html`) con buscador en JS por título/tags/momento, una página por receta (`docs/recetas/<slug>.html`), y un histórico de planes semanales (`docs/plan/index.html`, con filtro rápido por año y mes, y `docs/plan/<slug>.html` por semana, enlazando a la receta cuando la comida es `tipo: receta`). Sin backend, sin dependencias externas, todo client-side. Si `plan/` no existe o está vacío, `docs/plan/index.html` se genera igual con un aviso de que no hay planes todavía. El código del generador (nombres, comentarios) está en inglés; el texto que se ve en la página sigue en español, como el resto del contenido del repositorio.
 
-- Un workflow (`.github/workflows/generate-site.yml`) ejecuta `python scripts/generate_site.py` y comitea `docs/` automáticamente en cada push a `main` que toque `recetas/`, `ingredientes/` o `scripts/`. No hace falta regenerarlo a mano salvo para previsualizar en local antes de comitear.
-- `docs/` es generado; no lo edites a mano. Los estilos y el JS "de verdad" están en `scripts/templates/` (`style.css`, `search.js`, `voice.js`), que el script solo copia.
-- Para publicarlo: activar GitHub Pages en el repo apuntando a la carpeta `/docs` de `main`. El repositorio debe ser público (o tener un plan de pago) para que Pages sea gratuito.
+- Un workflow (`.github/workflows/generate-site.yml`) ejecuta `python scripts/generate_site.py` y comitea `docs/` automáticamente en cada push a `main` que toque `recetas/`, `ingredientes/`, `plan/` o `scripts/`. No hace falta regenerarlo a mano salvo para previsualizar en local antes de comitear.
+- `docs/` es generado; no lo edites a mano. Los estilos y el JS "de verdad" están en `scripts/templates/` (`style.css`, `search.js`, `voice.js`, `plan.js`), que el script solo copia.
+- Para publicarlo: activar GitHub Pages en el repo apuntando a la carpeta `/docs` de `main`. El repositorio debe ser público (o tener un plan de pago) para que Pages sea gratuito. El histórico de planes semanales se publica tal cual, igual que las recetas.
 - Modo voz (Web Speech API) en la página de receta, Fase 1 ya implementada: botón "Empezar la receta" dicta los pasos y acepta los comandos "siguiente", "atrás", "repite", "ingredientes" y "para" (con fuzzy matching simple en `scripts/templates/voice.js`). Hay aviso de privacidad fijo (en Chrome el audio va a los servidores de Google) y un fallback de botones "paso anterior/siguiente" siempre visible, que también lee el paso en voz alta, para navegadores sin `SpeechRecognition` o con el micro bloqueado.
-- Previsto para más adelante (Fase 2 del modo voz, cuando Ricardo lo pida): Wake Lock API para mantener la pantalla encendida mientras se escucha, y `processLocally` para reconocimiento on-device cuando el navegador lo soporte. También sigue pendiente, sin relación con la voz: página de ingredientes y planes semanales con enlaces a recetas.
+- Previsto para más adelante (Fase 2 del modo voz, cuando Ricardo lo pida): Wake Lock API para mantener la pantalla encendida mientras se escucha, y `processLocally` para reconocimiento on-device cuando el navegador lo soporte. También sigue pendiente, sin relación con la voz: página de ingredientes.
 
 ## Cómo trabajar aquí
 
