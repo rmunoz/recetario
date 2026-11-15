@@ -98,9 +98,15 @@ main.grid {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(43, 36, 32, 0.12);
+/* Only on devices that actually hover (mouse/trackpad). On touch, a
+   :hover rule on an ancestor of the real link (.card-link) makes the
+   first tap "apply hover" instead of navigating, needing a second tap
+   to open the recipe — so touch devices skip this entirely. */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(43, 36, 32, 0.12);
+  }
 }
 
 /* Invisible overlay covering the whole card, so clicking anywhere except
