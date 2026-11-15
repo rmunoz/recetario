@@ -376,7 +376,7 @@ def render_plan_week_html(plan, recipes_by_slug):
 {rows_html}
 </tbody>
 </table>
-<p class="plan-note">Desayuno fijo todos los días (no se repite aquí, ver <code>dieta.md</code>); los totales ya lo incluyen. Las cifras son estimaciones, con un margen real de ±10&nbsp;%.</p>
+<p class="plan-note">Desayuno fijo todos los días, repartido durante la mañana hasta una hora antes de comer: café con leche de soja sin azúcar, yogur con frutos rojos y semillas, 20&nbsp;g de nueces y fruta de temporada. No cambia de una semana a otra, así que no se repite en la tabla; los totales de cada día ya lo incluyen. Las cifras son estimaciones, con un margen real de ±10&nbsp;%.</p>
 {"".join(sections)}
 </article>
 </body>
