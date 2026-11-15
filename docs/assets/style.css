@@ -319,16 +319,53 @@ article h2 {
   }
 }
 
-/* Nav link from the recipe index to the weekly-plan history */
+/* Banner linking from the recipe index to the weekly-plan history */
 
-.nav-link {
-  margin: 0.75rem 0 0;
-  font-size: 0.9rem;
+.plan-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0.85rem 0 1rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--color-accent-soft);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.nav-link a {
+@media (hover: hover) and (pointer: fine) {
+  .plan-banner:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+}
+
+.plan-banner-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.plan-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.plan-banner-text strong {
   color: var(--color-accent);
-  text-decoration: none;
+  font-size: 1.02rem;
+}
+
+.plan-banner-sub {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.plan-banner-arrow {
+  color: var(--color-accent);
+  font-size: 1.3rem;
 }
 
 /* Weekly plan history (index + week detail) */

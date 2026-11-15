@@ -187,9 +187,16 @@ def render_index_html(recipes):
 <header>
   <h1>Recetas de Ricardo</h1>
   <p class="subtitle">Dieta hipocalórica para 2 — {len(recipes)} recetas</p>
+  <a class="plan-banner" href="plan/index.html">
+    <span class="plan-banner-icon" aria-hidden="true">&#128197;</span>
+    <span class="plan-banner-text">
+      <strong>Planes semanales</strong>
+      <span class="plan-banner-sub">Histórico de menús, totales diarios y lista de la compra de cada semana</span>
+    </span>
+    <span class="plan-banner-arrow" aria-hidden="true">&rarr;</span>
+  </a>
   <input id="search" type="search" placeholder="Buscar por título, tag o momento…" autofocus>
   <p id="counter" class="counter"></p>
-  <p class="nav-link"><a href="plan/index.html">Ver planes semanales &rarr;</a></p>
 </header>
 <main class="grid">
 {cards_html}
