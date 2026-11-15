@@ -101,9 +101,9 @@ Cuando cambie una convención, actualiza a la vez este fichero y la skill afecta
 
 `scripts/generate_site.py` lee `recetas/*.yaml` y genera `docs/`: un listado (`docs/index.html`) con buscador en JS por título/tags/momento (sin backend, sin dependencias externas) y una página por receta (`docs/recetas/<slug>.html`). Todo client-side. El código del generador (nombres, comentarios) está en inglés; el texto que se ve en la página sigue en español, como el resto del contenido del repositorio.
 
-- Ejecútalo con `python scripts/generate_site.py` (necesita PyYAML) cada vez que una receta cambie, y comitea `docs/` junto con el cambio: no se regenera solo.
+- Un workflow (`.github/workflows/generate-site.yml`) ejecuta `python scripts/generate_site.py` y comitea `docs/` automáticamente en cada push a `main` que toque `recetas/`, `ingredientes/` o `scripts/`. No hace falta regenerarlo a mano salvo para previsualizar en local antes de comitear.
 - `docs/` es generado; no lo edites a mano. Los estilos y el JS "de verdad" están en `scripts/templates/` (`style.css`, `search.js`), que el script solo copia.
-- Para publicarlo: activar GitHub Pages en el repo apuntando a la carpeta `/docs` de `main`. Sin GitHub Actions.
+- Para publicarlo: activar GitHub Pages en el repo apuntando a la carpeta `/docs` de `main`. El repositorio debe ser público (o tener un plan de pago) para que Pages sea gratuito.
 - Previsto para más adelante, cuando Ricardo lo pida: página de ingredientes, planes semanales con enlaces a recetas, y en la página de receta un modo de voz (Web Speech API) que vaya dictando los pasos uno a uno. La página de receta ya deja los pasos en un `<script type="application/json" id="steps-data">` pensado para eso, pero no hay ninguna lógica de voz todavía.
 
 ## Cómo trabajar aquí
