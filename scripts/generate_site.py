@@ -20,6 +20,7 @@ import shutil
 import sys
 import unicodedata
 from pathlib import Path
+from urllib.parse import quote
 
 try:
     import yaml
@@ -70,8 +71,13 @@ def badge(text):
     return f'<span class="badge">{html.escape(str(text))}</span>' if text not in (None, "") else ""
 
 
-def render_tags(tags):
-    return "".join(f'<span class="tag">{html.escape(t)}</span>' for t in (tags or []))
+def render_tags(tags, index_href="index.html"):
+    """Tags as links to the recipe list filtered by that tag (?tag=...)."""
+    pieces = []
+    for t in tags or []:
+        href = html.escape(f"{index_href}?tag={quote(t)}")
+        pieces.append(f'<a class="tag" href="{href}">{html.escape(t)}</a>')
+    return "".join(pieces)
 
 
 def search_text(recipe):
@@ -103,11 +109,16 @@ def recipe_badges(recipe):
 def render_card(recipe):
     slug = recipe["_slug"]
     title = recipe.get("titulo", slug)
-    return f"""<a class="card" href="recetas/{html.escape(slug)}.html" data-search="{search_text(recipe)}">
+    tags = recipe.get("tags") or []
+    # The card itself is a link to the recipe, but tags are links too (to
+    # filter by tag), and an <a> can't contain another <a>. card-link is an
+    # invisible overlay instead, see .card/.card-link in style.css.
+    return f"""<div class="card" data-search="{search_text(recipe)}" data-tags="{html.escape('|'.join(tags))}">
+  <a class="card-link" href="recetas/{html.escape(slug)}.html" aria-label="{html.escape(title)}"></a>
   <h3>{html.escape(title)}</h3>
   <div class="badges">{recipe_badges(recipe)}</div>
-  <div class="tags">{render_tags(recipe.get("tags"))}</div>
-</a>"""
+  <div class="tags">{render_tags(tags, "index.html")}</div>
+</div>"""
 
 
 def render_index_html(recipes):
@@ -131,7 +142,7 @@ def render_index_html(recipes):
 {cards_html}
 </main>
 <footer>
-  <p>Generado automáticamente desde <code>recetas/</code> con <code>scripts/generate_site.py</code>. No editar a mano.</p>
+  <p><a href="https://github.com/rmunoz/recetario">Código fuente en GitHub</a></p>
 </footer>
 <script src="assets/search.js" defer></script>
 </body>
@@ -157,9 +168,15 @@ def render_recipe_html(recipe):
     steps_json = json.dumps(steps, ensure_ascii=False)
 
     extra = []
-    if recipe.get("fuente"):
-        source = html.escape(recipe["fuente"])
-        extra.append(f'<p class="source">Fuente: <a href="{source}">{source}</a></p>')
+    fuente = recipe.get("fuente")
+    if fuente == "propia":
+        extra.append('<p class="source">Receta propia de Ricardo.</p>')
+    elif fuente:
+        source = html.escape(fuente)
+        extra.append(
+            f'<p class="source">Receta adaptada a mis preferencias a partir de '
+            f'<a href="{source}">la receta original</a>.</p>'
+        )
     if recipe.get("imagen"):
         image = html.escape(recipe["imagen"])
         extra.append(f'<img class="image" src="{image}" alt="{html.escape(title)}">')
@@ -177,7 +194,7 @@ def render_recipe_html(recipe):
 <article>
 <h1>{html.escape(title)}</h1>
 <div class="badges">{recipe_badges(recipe)}</div>
-<div class="tags">{render_tags(recipe.get("tags"))}</div>
+<div class="tags">{render_tags(recipe.get("tags"), "../index.html")}</div>
 {"".join(extra)}
 <h2>Ingredientes ({recipe.get("raciones", "?")} ración/es)</h2>
 <ul class="ingredients">
