@@ -1,0 +1,19 @@
+titulo: Ensalada simple de col
+tags: [col, verdura, ensalada, vinagreta, sin-coccion, vegetariana, baja-en-kcal, rapida]
+raciones: 1
+kcal_racion: 87
+proteina_racion_g: 2
+aceite_cucharillas: 1
+momento: [guarnicion, comida, cena]
+sodio: bajo
+ingredientes:
+  - texto: 175 g de col
+  - texto: 1 cucharilla de aceite de oliva virgen extra
+  - texto: 2 cucharillas de vinagre de jerez o de sidra
+  - texto: 1 pizca de sal
+  - texto: 100 ml de agua
+pasos:
+  - Cortar la col en juliana fina y dejarla en remojo con agua durante 5-10 minutos.
+  - Preparar el aliño mezclando el aceite, el vinagre, la sal y el agua.
+  - Escurrir bien la col, pasarla a un bol y aliñar con la vinagreta.
+fuente: propia
