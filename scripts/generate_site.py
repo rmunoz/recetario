@@ -164,7 +164,10 @@ def render_recipe_html(recipe):
     title = recipe.get("titulo", recipe["_slug"])
     ingredients_html = "\n".join(render_ingredient(i) for i in recipe.get("ingredientes", []) or [])
     steps = recipe.get("pasos", []) or []
-    steps_html = "\n".join(f"<li>{html.escape(step)}</li>" for step in steps)
+    steps_html = "\n".join(
+        f'<li data-step-index="{i}">{html.escape(step)}</li>'
+        for i, step in enumerate(steps)
+    )
     steps_json = json.dumps(steps, ensure_ascii=False)
 
     extra = []
@@ -201,10 +204,29 @@ def render_recipe_html(recipe):
 {ingredients_html}
 </ul>
 <h2>Pasos</h2>
+<section class="voice-mode" id="voice-mode">
+<p class="voice-privacy">
+El modo voz usa el reconocimiento de voz del navegador. En Chrome, el audio
+se envía a los servidores de Google para transcribirlo; en otros
+navegadores puede procesarse en el propio dispositivo. Si prefieres no usar
+el micrófono, los botones de abajo funcionan igual.
+</p>
+<div class="voice-controls">
+<button type="button" class="voice-button" id="voice-start">🎙️ Empezar la receta</button>
+<button type="button" class="voice-button voice-button-secondary" id="voice-stop" hidden>Detener</button>
+</div>
+<p class="voice-status" id="voice-status" aria-live="polite"></p>
+</section>
 <ol class="steps" id="steps">
 {steps_html}
 </ol>
+<div class="step-nav" id="step-nav">
+<button type="button" class="step-nav-button" id="step-prev">&larr; Paso anterior</button>
+<span class="step-nav-current" id="step-nav-current"></span>
+<button type="button" class="step-nav-button" id="step-next">Paso siguiente &rarr;</button>
+</div>
 <script type="application/json" id="steps-data">{steps_json}</script>
+<script src="../assets/voice.js" defer></script>
 </article>
 </body>
 </html>
@@ -213,7 +235,7 @@ def render_recipe_html(recipe):
 
 def copy_assets():
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
-    for name in ("style.css", "search.js"):
+    for name in ("style.css", "search.js", "voice.js"):
         shutil.copyfile(TEMPLATES_DIR / name, ASSETS_DIR / name)
 
 

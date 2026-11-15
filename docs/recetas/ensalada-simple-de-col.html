@@ -22,12 +22,31 @@
 <li>100 ml de agua</li>
 </ul>
 <h2>Pasos</h2>
+<section class="voice-mode" id="voice-mode">
+<p class="voice-privacy">
+El modo voz usa el reconocimiento de voz del navegador. En Chrome, el audio
+se envía a los servidores de Google para transcribirlo; en otros
+navegadores puede procesarse en el propio dispositivo. Si prefieres no usar
+el micrófono, los botones de abajo funcionan igual.
+</p>
+<div class="voice-controls">
+<button type="button" class="voice-button" id="voice-start">🎙️ Empezar la receta</button>
+<button type="button" class="voice-button voice-button-secondary" id="voice-stop" hidden>Detener</button>
+</div>
+<p class="voice-status" id="voice-status" aria-live="polite"></p>
+</section>
 <ol class="steps" id="steps">
-<li>Cortar la col en juliana fina y dejarla en remojo con agua durante 5-10 minutos.</li>
-<li>Preparar el aliño mezclando el aceite, el vinagre, la sal y el agua.</li>
-<li>Escurrir bien la col, pasarla a un bol y aliñar con la vinagreta.</li>
+<li data-step-index="0">Cortar la col en juliana fina y dejarla en remojo con agua durante 5-10 minutos.</li>
+<li data-step-index="1">Preparar el aliño mezclando el aceite, el vinagre, la sal y el agua.</li>
+<li data-step-index="2">Escurrir bien la col, pasarla a un bol y aliñar con la vinagreta.</li>
 </ol>
+<div class="step-nav" id="step-nav">
+<button type="button" class="step-nav-button" id="step-prev">&larr; Paso anterior</button>
+<span class="step-nav-current" id="step-nav-current"></span>
+<button type="button" class="step-nav-button" id="step-next">Paso siguiente &rarr;</button>
+</div>
 <script type="application/json" id="steps-data">["Cortar la col en juliana fina y dejarla en remojo con agua durante 5-10 minutos.", "Preparar el aliño mezclando el aceite, el vinagre, la sal y el agua.", "Escurrir bien la col, pasarla a un bol y aliñar con la vinagreta."]</script>
+<script src="../assets/voice.js" defer></script>
 </article>
 </body>
 </html>

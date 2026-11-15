@@ -102,9 +102,10 @@ Cuando cambie una convención, actualiza a la vez este fichero y la skill afecta
 `scripts/generate_site.py` lee `recetas/*.yaml` y genera `docs/`: un listado (`docs/index.html`) con buscador en JS por título/tags/momento (sin backend, sin dependencias externas) y una página por receta (`docs/recetas/<slug>.html`). Todo client-side. El código del generador (nombres, comentarios) está en inglés; el texto que se ve en la página sigue en español, como el resto del contenido del repositorio.
 
 - Un workflow (`.github/workflows/generate-site.yml`) ejecuta `python scripts/generate_site.py` y comitea `docs/` automáticamente en cada push a `main` que toque `recetas/`, `ingredientes/` o `scripts/`. No hace falta regenerarlo a mano salvo para previsualizar en local antes de comitear.
-- `docs/` es generado; no lo edites a mano. Los estilos y el JS "de verdad" están en `scripts/templates/` (`style.css`, `search.js`), que el script solo copia.
+- `docs/` es generado; no lo edites a mano. Los estilos y el JS "de verdad" están en `scripts/templates/` (`style.css`, `search.js`, `voice.js`), que el script solo copia.
 - Para publicarlo: activar GitHub Pages en el repo apuntando a la carpeta `/docs` de `main`. El repositorio debe ser público (o tener un plan de pago) para que Pages sea gratuito.
-- Previsto para más adelante, cuando Ricardo lo pida: página de ingredientes, planes semanales con enlaces a recetas, y en la página de receta un modo de voz (Web Speech API) que vaya dictando los pasos uno a uno. La página de receta ya deja los pasos en un `<script type="application/json" id="steps-data">` pensado para eso, pero no hay ninguna lógica de voz todavía.
+- Modo voz (Web Speech API) en la página de receta, Fase 1 ya implementada: botón "Empezar la receta" dicta los pasos y acepta los comandos "siguiente", "atrás", "repite", "ingredientes" y "para" (con fuzzy matching simple en `scripts/templates/voice.js`). Hay aviso de privacidad fijo (en Chrome el audio va a los servidores de Google) y un fallback de botones "paso anterior/siguiente" siempre visible, que también lee el paso en voz alta, para navegadores sin `SpeechRecognition` o con el micro bloqueado.
+- Previsto para más adelante (Fase 2 del modo voz, cuando Ricardo lo pida): Wake Lock API para mantener la pantalla encendida mientras se escucha, y `processLocally` para reconocimiento on-device cuando el navegador lo soporte. También sigue pendiente, sin relación con la voz: página de ingredientes y planes semanales con enlaces a recetas.
 
 ## Cómo trabajar aquí
 

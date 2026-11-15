@@ -36,13 +36,32 @@
 <li>sal</li>
 </ul>
 <h2>Pasos</h2>
+<section class="voice-mode" id="voice-mode">
+<p class="voice-privacy">
+El modo voz usa el reconocimiento de voz del navegador. En Chrome, el audio
+se envía a los servidores de Google para transcribirlo; en otros
+navegadores puede procesarse en el propio dispositivo. Si prefieres no usar
+el micrófono, los botones de abajo funcionan igual.
+</p>
+<div class="voice-controls">
+<button type="button" class="voice-button" id="voice-start">🎙️ Empezar la receta</button>
+<button type="button" class="voice-button voice-button-secondary" id="voice-stop" hidden>Detener</button>
+</div>
+<p class="voice-status" id="voice-status" aria-live="polite"></p>
+</section>
 <ol class="steps" id="steps">
-<li>Pelar las manzanas y cortarlas en dados. Ponerlas en una olla con el agua, el ajo pelado, las especias y la sal; cocer 35-40 minutos desde que arranque el hervor, hasta que estén muy blandas. Apartar del fuego, añadir el zumo de limón y triturar con la turmix. Reservar.</li>
-<li>Precalentar el horno a 200°C. Cortar la col en cuartos o en rodajas de dos centímetros, colocarlas en una bandeja, pincelarlas con la cucharilla de aceite y salpimentar por las dos caras. Asar 20 minutos, dándoles la vuelta a mitad de cocción, hasta que estén doradas y tiernas.</li>
-<li>Sofreír la chalota picada en una sartén con la media cucharilla de aceite hasta que se ablande y dore un poco. Añadir la mostaza de Dijon, retirar del fuego y mezclar con el yogur griego 0 % o el queso batido 0 % fuera del calor directo para que no se corte. Salar al gusto.</li>
-<li>Montar el plato con el puré de manzana de base, la col encima y la salsa de mostaza y yogur por encima.</li>
+<li data-step-index="0">Pelar las manzanas y cortarlas en dados. Ponerlas en una olla con el agua, el ajo pelado, las especias y la sal; cocer 35-40 minutos desde que arranque el hervor, hasta que estén muy blandas. Apartar del fuego, añadir el zumo de limón y triturar con la turmix. Reservar.</li>
+<li data-step-index="1">Precalentar el horno a 200°C. Cortar la col en cuartos o en rodajas de dos centímetros, colocarlas en una bandeja, pincelarlas con la cucharilla de aceite y salpimentar por las dos caras. Asar 20 minutos, dándoles la vuelta a mitad de cocción, hasta que estén doradas y tiernas.</li>
+<li data-step-index="2">Sofreír la chalota picada en una sartén con la media cucharilla de aceite hasta que se ablande y dore un poco. Añadir la mostaza de Dijon, retirar del fuego y mezclar con el yogur griego 0 % o el queso batido 0 % fuera del calor directo para que no se corte. Salar al gusto.</li>
+<li data-step-index="3">Montar el plato con el puré de manzana de base, la col encima y la salsa de mostaza y yogur por encima.</li>
 </ol>
+<div class="step-nav" id="step-nav">
+<button type="button" class="step-nav-button" id="step-prev">&larr; Paso anterior</button>
+<span class="step-nav-current" id="step-nav-current"></span>
+<button type="button" class="step-nav-button" id="step-next">Paso siguiente &rarr;</button>
+</div>
 <script type="application/json" id="steps-data">["Pelar las manzanas y cortarlas en dados. Ponerlas en una olla con el agua, el ajo pelado, las especias y la sal; cocer 35-40 minutos desde que arranque el hervor, hasta que estén muy blandas. Apartar del fuego, añadir el zumo de limón y triturar con la turmix. Reservar.", "Precalentar el horno a 200°C. Cortar la col en cuartos o en rodajas de dos centímetros, colocarlas en una bandeja, pincelarlas con la cucharilla de aceite y salpimentar por las dos caras. Asar 20 minutos, dándoles la vuelta a mitad de cocción, hasta que estén doradas y tiernas.", "Sofreír la chalota picada en una sartén con la media cucharilla de aceite hasta que se ablande y dore un poco. Añadir la mostaza de Dijon, retirar del fuego y mezclar con el yogur griego 0 % o el queso batido 0 % fuera del calor directo para que no se corte. Salar al gusto.", "Montar el plato con el puré de manzana de base, la col encima y la salsa de mostaza y yogur por encima."]</script>
+<script src="../assets/voice.js" defer></script>
 </article>
 </body>
 </html>

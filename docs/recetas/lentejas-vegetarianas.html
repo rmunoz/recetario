@@ -27,15 +27,34 @@
 <li>sal</li>
 </ul>
 <h2>Pasos</h2>
+<section class="voice-mode" id="voice-mode">
+<p class="voice-privacy">
+El modo voz usa el reconocimiento de voz del navegador. En Chrome, el audio
+se envía a los servidores de Google para transcribirlo; en otros
+navegadores puede procesarse en el propio dispositivo. Si prefieres no usar
+el micrófono, los botones de abajo funcionan igual.
+</p>
+<div class="voice-controls">
+<button type="button" class="voice-button" id="voice-start">🎙️ Empezar la receta</button>
+<button type="button" class="voice-button voice-button-secondary" id="voice-stop" hidden>Detener</button>
+</div>
+<p class="voice-status" id="voice-status" aria-live="polite"></p>
+</section>
 <ol class="steps" id="steps">
-<li>Limpiar la zanahoria, la cebolla y el pimiento, cortarlos en trozos grandes y meterlos en una malla o bolsa apta para olla a presión.</li>
-<li>Poner la malla con las verduras en la olla junto con las lentejas y la hoja de laurel, y cubrir con agua hasta que quede todo tapado.</li>
-<li>Añadir el pimentón, el pimiento choricero y la sal.</li>
-<li>Cerrar la olla y subir el fuego al máximo hasta que alcance presión; en ese momento bajar el fuego y cocinar 8 minutos. Apagar el fuego, dejar que la presión baje sola durante 10 minutos y luego abrir la válvula para liberar el resto antes de abrir la olla.</li>
-<li>Sacar la malla de verduras, pasarlas al vaso de la batidora con un poco del agua de cocción y unas lentejas, y batir hasta conseguir un puré fino.</li>
-<li>Mezclar el puré con el resto de las lentejas. Saben mejor si reposan 24 horas en la nevera antes de comer.</li>
+<li data-step-index="0">Limpiar la zanahoria, la cebolla y el pimiento, cortarlos en trozos grandes y meterlos en una malla o bolsa apta para olla a presión.</li>
+<li data-step-index="1">Poner la malla con las verduras en la olla junto con las lentejas y la hoja de laurel, y cubrir con agua hasta que quede todo tapado.</li>
+<li data-step-index="2">Añadir el pimentón, el pimiento choricero y la sal.</li>
+<li data-step-index="3">Cerrar la olla y subir el fuego al máximo hasta que alcance presión; en ese momento bajar el fuego y cocinar 8 minutos. Apagar el fuego, dejar que la presión baje sola durante 10 minutos y luego abrir la válvula para liberar el resto antes de abrir la olla.</li>
+<li data-step-index="4">Sacar la malla de verduras, pasarlas al vaso de la batidora con un poco del agua de cocción y unas lentejas, y batir hasta conseguir un puré fino.</li>
+<li data-step-index="5">Mezclar el puré con el resto de las lentejas. Saben mejor si reposan 24 horas en la nevera antes de comer.</li>
 </ol>
+<div class="step-nav" id="step-nav">
+<button type="button" class="step-nav-button" id="step-prev">&larr; Paso anterior</button>
+<span class="step-nav-current" id="step-nav-current"></span>
+<button type="button" class="step-nav-button" id="step-next">Paso siguiente &rarr;</button>
+</div>
 <script type="application/json" id="steps-data">["Limpiar la zanahoria, la cebolla y el pimiento, cortarlos en trozos grandes y meterlos en una malla o bolsa apta para olla a presión.", "Poner la malla con las verduras en la olla junto con las lentejas y la hoja de laurel, y cubrir con agua hasta que quede todo tapado.", "Añadir el pimentón, el pimiento choricero y la sal.", "Cerrar la olla y subir el fuego al máximo hasta que alcance presión; en ese momento bajar el fuego y cocinar 8 minutos. Apagar el fuego, dejar que la presión baje sola durante 10 minutos y luego abrir la válvula para liberar el resto antes de abrir la olla.", "Sacar la malla de verduras, pasarlas al vaso de la batidora con un poco del agua de cocción y unas lentejas, y batir hasta conseguir un puré fino.", "Mezclar el puré con el resto de las lentejas. Saben mejor si reposan 24 horas en la nevera antes de comer."]</script>
+<script src="../assets/voice.js" defer></script>
 </article>
 </body>
 </html>

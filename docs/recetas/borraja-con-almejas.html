@@ -26,14 +26,33 @@
 <li>sal y pimienta</li>
 </ul>
 <h2>Pasos</h2>
+<section class="voice-mode" id="voice-mode">
+<p class="voice-privacy">
+El modo voz usa el reconocimiento de voz del navegador. En Chrome, el audio
+se envía a los servidores de Google para transcribirlo; en otros
+navegadores puede procesarse en el propio dispositivo. Si prefieres no usar
+el micrófono, los botones de abajo funcionan igual.
+</p>
+<div class="voice-controls">
+<button type="button" class="voice-button" id="voice-start">🎙️ Empezar la receta</button>
+<button type="button" class="voice-button voice-button-secondary" id="voice-stop" hidden>Detener</button>
+</div>
+<p class="voice-status" id="voice-status" aria-live="polite"></p>
+</section>
 <ol class="steps" id="steps">
-<li>Cocer la borraja cortada en trozos de unos 5 cm (15 minutos aproximadamente, o al gusto).</li>
-<li>En una sartén, sofreír el ajo laminado o en trozos pequeños con las 2 cucharillas de aceite a fuego medio-bajo. Cuando empiece a tomar calor, añadir la cucharilla de maizena y mezclar bien; a continuación, añadir el vino blanco y seguir removiendo.</li>
-<li>Cuando el alcohol del vino se haya evaporado, añadir el agua y seguir removiendo para que se vaya formando una salsa ligera. Añadir las almejas y seguir cocinando hasta que se abran todas (si alguna no se abre, retirarla).</li>
-<li>Añadir la borraja cocida a la sartén, salpimentar y mezclar bien.</li>
-<li>Repartir en los dos platos, cortar el huevo duro en trocitos de un par de centímetros y repartirlo por encima.</li>
+<li data-step-index="0">Cocer la borraja cortada en trozos de unos 5 cm (15 minutos aproximadamente, o al gusto).</li>
+<li data-step-index="1">En una sartén, sofreír el ajo laminado o en trozos pequeños con las 2 cucharillas de aceite a fuego medio-bajo. Cuando empiece a tomar calor, añadir la cucharilla de maizena y mezclar bien; a continuación, añadir el vino blanco y seguir removiendo.</li>
+<li data-step-index="2">Cuando el alcohol del vino se haya evaporado, añadir el agua y seguir removiendo para que se vaya formando una salsa ligera. Añadir las almejas y seguir cocinando hasta que se abran todas (si alguna no se abre, retirarla).</li>
+<li data-step-index="3">Añadir la borraja cocida a la sartén, salpimentar y mezclar bien.</li>
+<li data-step-index="4">Repartir en los dos platos, cortar el huevo duro en trocitos de un par de centímetros y repartirlo por encima.</li>
 </ol>
+<div class="step-nav" id="step-nav">
+<button type="button" class="step-nav-button" id="step-prev">&larr; Paso anterior</button>
+<span class="step-nav-current" id="step-nav-current"></span>
+<button type="button" class="step-nav-button" id="step-next">Paso siguiente &rarr;</button>
+</div>
 <script type="application/json" id="steps-data">["Cocer la borraja cortada en trozos de unos 5 cm (15 minutos aproximadamente, o al gusto).", "En una sartén, sofreír el ajo laminado o en trozos pequeños con las 2 cucharillas de aceite a fuego medio-bajo. Cuando empiece a tomar calor, añadir la cucharilla de maizena y mezclar bien; a continuación, añadir el vino blanco y seguir removiendo.", "Cuando el alcohol del vino se haya evaporado, añadir el agua y seguir removiendo para que se vaya formando una salsa ligera. Añadir las almejas y seguir cocinando hasta que se abran todas (si alguna no se abre, retirarla).", "Añadir la borraja cocida a la sartén, salpimentar y mezclar bien.", "Repartir en los dos platos, cortar el huevo duro en trocitos de un par de centímetros y repartirlo por encima."]</script>
+<script src="../assets/voice.js" defer></script>
 </article>
 </body>
 </html>
