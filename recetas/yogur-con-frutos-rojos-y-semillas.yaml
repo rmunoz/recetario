@@ -1,0 +1,23 @@
+titulo: Yogur con frutos rojos y semillas
+tags: [desayuno, yogur, frutos-rojos, semillas, sin-coccion, rapido, alta-en-proteina, propia]
+raciones: 1
+kcal_racion: 140
+proteina_racion_g: 8
+aceite_cucharillas: 0
+momento: [desayuno]
+sodio: bajo
+ingredientes:
+  - texto: 2 moras
+  - texto: 4 arándanos
+  - texto: 6 grosellas
+  - texto: 2 frambuesas
+  - texto: 1 higo seco
+  - texto: 2 cucharillas de mezcla de semillas (chía, calabaza, girasol, sésamo y lino) # ~10 g; batch: 15g chía + 18g calabaza + 30g girasol + 15g sésamo + 15g lino
+  - texto: 1 yogur Activia 0 % MG, 0 % azúcares añadidos
+    ingrediente: yogur-activia-0
+pasos:
+  - Echar los frutos rojos y las semillas en un bol y desmenuzar con una cucharilla, dejando trozos de diferentes tamaños.
+  - Añadir el higo seco cortado en trocitos pequeños.
+  - Menear el yogur unos segundos antes de abrirlo para que quede cremoso, y echarlo en el bol.
+  - Mezclar todo bien.
+fuente: propia

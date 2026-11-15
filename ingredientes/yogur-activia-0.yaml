@@ -1,0 +1,15 @@
+nombre: Yogur Activia 0 % MG, 0 % azúcares añadidos
+categoria: lacteos
+unidad_ref: 100 g
+kcal: 40
+proteina_g: 4
+grasa_g: 0.4
+grasa_saturada_g: 0.2
+hidratos_g: 5
+azucares_g: 5
+sal_g: 0.15
+otros:
+  calcio_mg: 120
+  cloruro_mg: 100
+nota: una unidad = 120 g
+fuente: etiqueta

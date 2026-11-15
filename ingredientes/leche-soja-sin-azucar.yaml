@@ -1,0 +1,16 @@
+nombre: Leche de soja sin azúcar
+categoria: otro
+unidad_ref: 100 ml
+kcal: 35
+proteina_g: 3.3
+grasa_g: 1.9
+grasa_saturada_g: 0.3
+hidratos_g: 0
+fibra_g: 0.6
+sal_g: 0.09
+otros:
+  vitamina_d2_microgr: 0.75
+  riboflavina_mg: 0.21
+  calcio_mg: 120
+  yodo_microgr: 22.5
+fuente: etiqueta
