@@ -20,7 +20,7 @@ Convierte una receta cualquiera en una receta del repositorio personal de Ricard
 ## Adaptaciones fijas
 
 - **Lácteos al 0 %** manteniendo la proteína alta: yogur griego 0 % (alto en proteína), skyr o queso batido 0 %. La nata o crema se sustituye por yogur o queso batido 0 %; la leche, por la versión 0 % o por bebida de soja sin azúcar, que es la que Ricardo ya toma.
-- **Aceite al mínimo.** Ricardo tiene un límite de **4 cucharillas de aceite para todo el día**, así que cada cucharilla cuenta. Reduce el aceite todo lo que la técnica permita (airfryer, horno con bandeja caliente, antiadherente, caldo o agua para sofreír) y elimina los chorritos de remate. Indica en el frontmatter cuántas cucharillas gasta la receta completa en `aceite_cucharillas`. Una cucharilla son unos 4-5 g (~40 kcal).
+- **Aceite al mínimo.** Ricardo tiene un límite de **4 cucharillas de aceite para todo el día**, así que cada cucharilla cuenta. Reduce el aceite todo lo que la técnica permita (horno con bandeja caliente, antiadherente, caldo o agua para sofreír) y elimina los chorritos de remate. Indica en el frontmatter cuántas cucharillas gasta la receta completa en `aceite_cucharillas`. Una cucharilla son unos 4-5 g (~40 kcal).
 - **Ingredientes grasos por otros más ligeros**: tahini → semillas de sésamo, mantequilla → una parte mínima de aceite o yogur, nata → yogur 0 %, queso graso → versión light o menos cantidad. Explica el cambio en una línea cuando afecte al sabor o a la textura.
 - **Nunca** añadas azúcar ni otros ingredientes calóricos para compensar.
 

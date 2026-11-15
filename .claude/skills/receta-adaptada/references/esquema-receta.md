@@ -35,7 +35,7 @@ Ejemplo completo:
 
 ```yaml
 titulo: Coliflor especiada con yogur y granada
-tags: [coliflor, verdura, guarnicion, vegetariana, airfryer]
+tags: [coliflor, verdura, guarnicion, vegetariana, horno]
 raciones: 2
 kcal_racion: 115
 proteina_racion_g: 9
@@ -48,7 +48,7 @@ ingredientes:
     ingrediente: yogur-griego-0
   - texto: 1 cucharadita de semillas de sésamo
 pasos:
-  - Encender la airfryer a 180°C.
+  - Encender el horno a 200°C.
   - Mezclar el aliño y masajear la coliflor.
   - Cocinar 30-40 minutos y servir con la salsa de yogur.
 fuente: https://ejemplo.com/receta-original
