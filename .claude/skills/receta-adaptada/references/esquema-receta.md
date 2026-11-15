@@ -17,7 +17,7 @@ Cada receta es un fichero `.yaml` en `recetas/`. La skill `plan-semanal-comidas`
 | `ingredientes` | lista | sí | Ver más abajo |
 | `pasos` | lista de texto | sí | Un elemento por paso, en orden |
 | `fuente` | texto | sí | URL original, o `propia` si es una receta propia de Ricardo (no viene de internet) |
-| `imagen` | texto | no | URL de la imagen. Si no hay, se omite la clave entera (nunca `null` ni "pendiente") |
+| `imagen` | texto | no | URL de la imagen, o ruta relativa a un fichero en `imagenes/` (p. ej. `imagenes/<slug>.jpg`). Si no hay, se omite la clave entera (nunca `null` ni "pendiente") |
 
 ### `ingredientes`
 

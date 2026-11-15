@@ -32,6 +32,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 RECIPES_DIR = ROOT / "recetas"
 PLAN_DIR = ROOT / "plan"
+IMAGES_DIR = ROOT / "imagenes"
 TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
 DOCS_DIR = ROOT / "docs"
 RECIPES_HTML_DIR = DOCS_DIR / "recetas"
@@ -220,6 +221,14 @@ def render_ingredient(item):
     return f"<li>{html.escape(text)}{extra}</li>"
 
 
+def image_src(imagen):
+    """URLs are used as-is; a local path (imagenes/foo.jpg) resolves to the
+    copy of imagenes/ that copy_assets() places under docs/assets/."""
+    if imagen.startswith("http://") or imagen.startswith("https://"):
+        return imagen
+    return f"../assets/{imagen}"
+
+
 def render_recipe_html(recipe):
     title = recipe.get("titulo", recipe["_slug"])
     ingredients_html = "\n".join(render_ingredient(i) for i in recipe.get("ingredientes", []) or [])
@@ -241,7 +250,7 @@ def render_recipe_html(recipe):
             f'<a href="{source}">la receta original</a>.</p>'
         )
     if recipe.get("imagen"):
-        image = html.escape(recipe["imagen"])
+        image = html.escape(image_src(recipe["imagen"]))
         extra.append(f'<img class="image" src="{image}" alt="{html.escape(title)}">')
 
     return f"""<!doctype html>
@@ -463,6 +472,11 @@ def copy_assets():
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     for name in ("style.css", "search.js", "voice.js", "plan.js"):
         shutil.copyfile(TEMPLATES_DIR / name, ASSETS_DIR / name)
+    if IMAGES_DIR.exists():
+        images_dest = ASSETS_DIR / "imagenes"
+        if images_dest.exists():
+            shutil.rmtree(images_dest)
+        shutil.copytree(IMAGES_DIR, images_dest)
 
 
 def main():

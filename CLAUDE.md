@@ -12,6 +12,7 @@ Repositorio personal de Ricardo para gestionar recetas, ingredientes y planes se
 │   └── pauta-base.md         # pauta hipocalórica del endocrino (Dr. Palacios Latasa), como referencia
 ├── ingredientes/             # ingredientes habituales, un fichero .yaml por ingrediente
 ├── recetas/                  # una receta por fichero .yaml
+├── imagenes/                  # fotos propias de recetas, referenciadas desde imagen: imagenes/<slug>.jpg
 ├── plan/
 │   └── YYYY/semanaXX.yaml    # (opcional) planes semanales guardados
 ├── scripts/
@@ -68,7 +69,7 @@ pasos:
   - Mezclar el aliño y masajear la coliflor.
   - Cocinar 30-40 minutos y servir con la salsa de yogur.
 fuente: https://ejemplo.com/receta-original   # opcional en recetas propias
-imagen: https://ejemplo.com/foto.jpg          # opcional; si no hay, se omite la clave
+imagen: imagenes/coliflor-especiada-con-yogur-y-granada.jpg   # opcional; URL externa o ruta en imagenes/; si no hay, se omite la clave
 ```
 
 - Obligatorios: `titulo`, `tags`, `raciones`, `kcal_racion`, `proteina_racion_g`, `aceite_cucharillas`, `ingredientes`, `pasos`.
@@ -108,7 +109,7 @@ Cuando cambie una convención, actualiza a la vez este fichero y la skill afecta
 `scripts/generate_site.py` lee `recetas/*.yaml` y `plan/**/*.yaml` y genera `docs/`: un listado de recetas (`docs/index.html`) con buscador en JS por título/tags/momento, una página por receta (`docs/recetas/<slug>.html`), y un histórico de planes semanales (`docs/plan/index.html`, con filtro rápido por año y mes, y `docs/plan/<slug>.html` por semana, enlazando a la receta cuando la comida es `tipo: receta`). Sin backend, sin dependencias externas, todo client-side. Si `plan/` no existe o está vacío, `docs/plan/index.html` se genera igual con un aviso de que no hay planes todavía. El código del generador (nombres, comentarios) está en inglés; el texto que se ve en la página sigue en español, como el resto del contenido del repositorio.
 
 - Un workflow (`.github/workflows/generate-site.yml`) ejecuta `python scripts/generate_site.py` y comitea `docs/` automáticamente en cada push a `main` que toque `recetas/`, `ingredientes/`, `plan/` o `scripts/`. No hace falta regenerarlo a mano salvo para previsualizar en local antes de comitear.
-- `docs/` es generado; no lo edites a mano. Los estilos y el JS "de verdad" están en `scripts/templates/` (`style.css`, `search.js`, `voice.js`, `plan.js`), que el script solo copia.
+- `docs/` es generado; no lo edites a mano. Los estilos y el JS "de verdad" están en `scripts/templates/` (`style.css`, `search.js`, `voice.js`, `plan.js`), que el script solo copia. Las fotos propias de `imagenes/` se copian igual a `docs/assets/imagenes/`.
 - Para publicarlo: activar GitHub Pages en el repo apuntando a la carpeta `/docs` de `main`. El repositorio debe ser público (o tener un plan de pago) para que Pages sea gratuito. El histórico de planes semanales se publica tal cual, igual que las recetas.
 - Modo voz (Web Speech API) en la página de receta, Fase 1 ya implementada: botón "Empezar la receta" dicta los pasos y acepta los comandos "siguiente", "atrás", "repite", "ingredientes" y "para" (con fuzzy matching simple en `scripts/templates/voice.js`). Hay aviso de privacidad fijo (en Chrome el audio va a los servidores de Google) y un fallback de botones "paso anterior/siguiente" siempre visible, que también lee el paso en voz alta, para navegadores sin `SpeechRecognition` o con el micro bloqueado.
 - Previsto para más adelante (Fase 2 del modo voz, cuando Ricardo lo pida): Wake Lock API para mantener la pantalla encendida mientras se escucha, y `processLocally` para reconocimiento on-device cuando el navegador lo soporte. También sigue pendiente, sin relación con la voz: página de ingredientes.

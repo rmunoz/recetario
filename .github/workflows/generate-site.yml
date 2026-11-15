@@ -6,6 +6,7 @@ on:
     paths:
       - "recetas/**"
       - "ingredientes/**"
+      - "imagenes/**"
       - "plan/**"
       - "scripts/**"
 
