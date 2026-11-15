@@ -1,0 +1,22 @@
+titulo: Tostada de anchoa con tomate y pepinillo
+tags: [anchoa, tomate, pepinillo, piquillo, pan, tostada, conserva]
+raciones: 1
+kcal_racion: 200
+proteina_racion_g: 9
+aceite_cucharillas: 0.5
+momento: [merienda, cena]
+sodio: alto
+ingredientes:
+  - texto: 1 rebanada de pan de 50 g
+  - texto: 1 tomate pequeño en rodajas
+  - texto: 2 pepinillos en vinagre pequeños (o 1 si es grande)
+  - texto: 1 pimiento de piquillo asado
+  - texto: 3 anchoas del Cantábrico en aceite, limpias y sin espinas
+pasos:
+  - Tostar la rebanada de pan.
+  - Cubrir la tostada con las rodajas de tomate.
+  - Cortar el pepinillo en láminas y repartirlas encima del tomate.
+  - Abrir el pimiento de piquillo y colocarlo sobre el pepinillo.
+  - Terminar con las tres anchoas por encima y servir.
+fuente: propia
+imagen: imagenes/tostada-de-anchoa-con-tomate-y-pepinillo.jpg
