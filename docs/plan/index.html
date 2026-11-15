@@ -10,9 +10,22 @@
 <a class="back-link" href="../index.html">&larr; Recetas</a>
 <header>
   <h1>Planes semanales</h1>
-  <p class="subtitle">Histórico de menús semanales &mdash; 0 semanas</p>
+  <p class="subtitle">Histórico de menús semanales &mdash; 1 semana</p>
 </header>
-<p class="empty-state">Todavía no hay planes semanales guardados.</p>
+<div class="plan-filters">
+  <div class="chip-group" id="year-filters" aria-label="Filtrar por año"><button type="button" class="chip active" data-filter-year="">Todos</button><button type="button" class="chip" data-filter-year="2026">2026</button></div>
+  <div class="chip-group" id="month-filters" aria-label="Filtrar por mes"><button type="button" class="chip active" data-filter-month="">Todos</button><button type="button" class="chip" data-filter-month="11">noviembre</button></div>
+</div>
+<p id="plan-counter" class="counter"></p>
+<main class="grid" id="plan-grid">
+<div class="card week-card" data-year="2026" data-month="11">
+  <a class="card-link" href="2026-semana47.html" aria-label="Semana 2026-W47"></a>
+  <h3>Semana 2026-W47</h3>
+  <p class="week-dates">16-22 nov 2026</p>
+  <div class="badges"><span class="badge">4 recetas nuevas</span></div>
+  <p class="week-summary">Primera semana del histórico, así que las cuatro recetas del repositorio cuentan como nuevas. Pescado azul 3 veces (anchoa, salmón, atún),…</p>
+</div>
+</main>
 <footer>
   <p><a href="https://github.com/rmunoz/recetario">Código fuente en GitHub</a></p>
 </footer>
