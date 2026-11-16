@@ -1,0 +1,28 @@
+titulo: Lomo de salmón a la naranja
+tags: [lomo, salmon, pescado, naranja, plancha, salsa, plato-principal, alta-proteina]
+raciones: 2
+kcal_racion: 320
+proteina_racion_g: 21
+aceite_cucharillas: 4
+momento: [comida, cena]
+sodio: alto
+ingredientes:
+  - texto: 200 g de lomo de salmón (2 filetes de 100 g)
+    ingrediente: salmon
+  - texto: zumo de naranja (medio vaso, unos 100 ml)
+    ingrediente: zumo-naranja
+  - texto: 2 cucharadas de salsa de soja
+    ingrediente: salsa-soja
+  - texto: 2 cucharadas de vinagre
+    ingrediente: vinagre
+  - texto: 4 cucharillas de aceite de oliva
+    ingrediente: aceite-oliva
+pasos:
+  - Poner los lomos a marinar en el zumo de naranja durante 20-30 minutos.
+  - Calentar la plancha y hacer los lomos vuelta y vuelta hasta que esté dorado por fuera y hecho por dentro.
+  - Mientras se hace, mezclar en el propio zumo de naranja la salsa de soja, el vinagre y el aceite, removiendo bien, y añadirlo a la sartén para que se vaya cocinando junto al lomo.
+  - Cuando los lomos estén en su punto, sacarlos a un plato y dejar la salsa sola en la sartén.
+  - Subir un poco el fuego y reducir la salsa hasta que espese y quede melosa.
+  - Echar al lomo con la salsa reducida y servir.
+fuente: propia
+imagen: imagenes/lomo-de-salmon-a-la-naranja.jpg
