@@ -14,6 +14,7 @@ The displayed page text (labels, headings) stays in Spanish on purpose:
 the site is for Ricardo's own Spanish-language recipes. Only the code
 itself (identifiers, comments, filenames) is in English.
 """
+import argparse
 import html
 import json
 import shutil
@@ -492,7 +493,25 @@ def copy_assets():
         shutil.copytree(IMAGES_DIR, images_dest)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--output", type=Path, default=None,
+        help="Override the output directory (default: docs/). Useful to validate "
+             "the recipes without touching the real docs/ directory.",
+    )
+    return parser.parse_args()
+
+
 def main():
+    global DOCS_DIR, RECIPES_HTML_DIR, PLAN_HTML_DIR, ASSETS_DIR
+    args = parse_args()
+    if args.output:
+        DOCS_DIR = args.output
+        RECIPES_HTML_DIR = DOCS_DIR / "recetas"
+        PLAN_HTML_DIR = DOCS_DIR / "plan"
+        ASSETS_DIR = DOCS_DIR / "assets"
+
     recipes = load_recipes()
     recipes_by_slug = {r["_slug"]: r for r in recipes}
 

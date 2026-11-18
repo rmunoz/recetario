@@ -9,6 +9,13 @@ on:
       - "imagenes/**"
       - "plan/**"
       - "scripts/**"
+  pull_request:
+    paths:
+      - "recetas/**"
+      - "ingredientes/**"
+      - "imagenes/**"
+      - "plan/**"
+      - "scripts/**"
 
 permissions:
   contents: write
@@ -30,6 +37,7 @@ jobs:
         run: python scripts/generate_site.py
 
       - name: Commit and push docs/ if changed
+        if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
