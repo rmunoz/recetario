@@ -1,0 +1,157 @@
+semana: 2026-W48
+fecha_inicio: 2026-11-23
+fecha_fin: 2026-11-29
+dias:
+  lunes:
+    ayuno: false
+    comida:
+      tipo: plato_habitual
+      texto: Pechuga de pollo a la plancha
+      kcal: 165
+      proteina_g: 35
+    merienda:
+      tipo: plato_habitual
+      texto: Jamón cocido con queso tierno
+      kcal: 165
+      proteina_g: 15
+    cena:
+      tipo: receta
+      receta: alcachofas-con-tiras-de-jamon
+      texto: Alcachofas con tiras de jamón + ensalada simple de col + fruta de postre
+      kcal: 387
+      proteina_g: 18
+    totales:
+      kcal: 1257
+      proteina_g: 90
+      aceite_cucharillas: 2.0
+  martes:
+    ayuno: true
+    comida:
+      tipo: receta
+      receta: lomo-de-salmon-a-la-naranja
+      texto: Lomo de salmón a la naranja + ensalada simple de col
+      kcal: 407
+      proteina_g: 23
+    cena:
+      tipo: plato_habitual
+      texto: Sopa juliana + ensalada simple de col (17:00)
+      kcal: 212
+      proteina_g: 7
+    totales:
+      kcal: 1159
+      proteina_g: 52
+      aceite_cucharillas: 3.0
+  miercoles:
+    ayuno: false
+    comida:
+      tipo: receta
+      receta: judias-verdes-con-tomate
+      texto: Judías verdes con tomate + patata cocida
+      kcal: 275
+      proteina_g: 6
+    cena:
+      tipo: plato_habitual
+      texto: Lubina a la plancha + ensalada de remolacha, manzana y zanahoria + 60 g de pan
+      kcal: 475
+      proteina_g: 37
+    totales:
+      kcal: 1290
+      proteina_g: 65
+      aceite_cucharillas: 2.0
+  jueves:
+    ayuno: true
+    comida:
+      tipo: receta
+      receta: lentejas-vegetarianas
+      texto: Lentejas vegetarianas + jamón con queso + ensalada de remolacha, manzana y zanahoria
+      kcal: 580
+      proteina_g: 36
+    cena:
+      tipo: plato_habitual
+      texto: Revuelto de setas + ensalada de tomate (17:00)
+      kcal: 260
+      proteina_g: 17
+    totales:
+      kcal: 1380
+      proteina_g: 75
+      aceite_cucharillas: 1.5
+  viernes:
+    ayuno: false
+    comida:
+      tipo: plato_habitual
+      texto: Garbanzos con arroz + ensalada simple de col + 2 huevos duros
+      kcal: 667
+      proteina_g: 34
+    merienda:
+      tipo: plato_habitual
+      texto: Pescado azul en conserva
+      kcal: 135
+      proteina_g: 18
+    cena:
+      tipo: receta
+      receta: tostada-de-anchoa-con-tomate-y-pepinillo
+      texto: Tostada de anchoa con tomate y pepinillo + sopa de cocido con pasta
+      kcal: 400
+      proteina_g: 17
+    totales:
+      kcal: 1742
+      proteina_g: 91
+      aceite_cucharillas: 1.25
+  sabado:
+    ayuno: false
+    comida:
+      tipo: plato_habitual
+      texto: Ternera a la plancha + coliflor especiada con yogur y granada + 60 g de pan
+      kcal: 490
+      proteina_g: 46
+    merienda:
+      tipo: receta
+      receta: tortitas-de-queso-cottage
+      texto: Tortitas de queso cottage
+      kcal: 250
+      proteina_g: 20
+    cena:
+      tipo: receta
+      receta: saquitos-de-pasta-filo-con-acelga-y-queso-azul
+      texto: Saquitos de pasta filo con acelga y queso azul
+      kcal: 430
+      proteina_g: 15
+    totales:
+      kcal: 1710
+      proteina_g: 103
+      aceite_cucharillas: 1.75
+  domingo:
+    ayuno: true
+    comida:
+      tipo: receta
+      receta: pita-rellena-de-verduras-y-queso-fundido
+      texto: Pita rellena de verduras y queso fundido + ensalada simple de col + fruta de postre
+      kcal: 552
+      proteina_g: 29
+    cena:
+      tipo: receta
+      receta: ensalada-ilustrada
+      texto: Ensalada ilustrada (17:00)
+      kcal: 470
+      proteina_g: 26
+    totales:
+      kcal: 1562
+      proteina_g: 77
+      aceite_cucharillas: 2.0
+recetas_nuevas:
+  - alcachofas-con-tiras-de-jamon
+  - lomo-de-salmon-a-la-naranja
+  - ensalada-de-remolacha-manzana-y-zanahoria-con-vinagreta-de-uvas-pasas
+  - tostada-de-anchoa-con-tomate-y-pepinillo
+  - tortitas-de-queso-cottage
+  - saquitos-de-pasta-filo-con-acelga-y-queso-azul
+  - pita-rellena-de-verduras-y-queso-fundido
+  - ensalada-ilustrada
+resumen_semanal: >
+  Semana con dos raciones de pescado (salmón a la naranja y lubina a la plancha),
+  dos de legumbre (lentejas vegetarianas y garbanzos con arroz) y una de carne roja
+  (ternera); no entra pollo ni pavo, buen candidato a añadir la próxima semana. El
+  huevo aparece en varios platos (huevos duros, ensalada ilustrada) y la verdura
+  está presente en todas las comidas principales. La ensalada simple de col se usa
+  varias veces como guarnición ligera, pero el plato principal nunca se repite en
+  días consecutivos.

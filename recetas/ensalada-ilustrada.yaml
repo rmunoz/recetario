@@ -1,0 +1,24 @@
+titulo: Ensalada ilustrada
+tags: [ensalada, atun, huevo, maiz, tomate, plato-principal, alta-proteina]
+raciones: 2
+kcal_racion: 470
+proteina_racion_g: 26
+aceite_cucharillas: 2
+momento: [comida]
+sodio: alto
+ingredientes:
+  - texto: mezcla de lechugas variadas a mano (romana, escarola, iceberg, hoja de roble, etc.)
+  - texto: 200 g de tomates
+  - texto: 1 cebolleta
+  - texto: 140 g de maíz dulce
+  - texto: 3 huevos duros
+  - texto: 100 g de atún claro en aceite de oliva
+  - texto: 2 cucharillas de aceite de oliva virgen extra
+  - texto: 4 cucharillas de vinagre de sidra
+    ingrediente: vinagre
+  - texto: sal
+pasos:
+  - Lavar bien las hojas de lechuga y escurrirlas.
+  - Cortar los tomates en dados grandes, la cebolleta en juliana y los huevos duros en cuartos.
+  - Mezclar todos los ingredientes en un bol y aliñar con el aceite, el vinagre y la sal.
+fuente: propia
