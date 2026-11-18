@@ -11,7 +11,7 @@ recipe changes.
 Needs PyYAML (pip install pyyaml).
 
 The displayed page text (labels, headings) stays in Spanish on purpose:
-the site is for Ricardo's own Spanish-language recipes. Only the code
+the site is for the user's own Spanish-language recipes. Only the code
 itself (identifiers, comments, filenames) is in English.
 """
 import argparse
@@ -195,12 +195,12 @@ def render_index_html(recipes):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Recetas de Ricardo</title>
+<title>Recetario</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <header>
-  <h1>Recetas de Ricardo</h1>
+  <h1>Recetario</h1>
   <p class="subtitle">Dieta hipocalórica para 2 — {len(recipes)} recetas</p>
   <a class="plan-banner" href="plan/index.html">
     <span class="plan-banner-icon" aria-hidden="true">&#128197;</span>
@@ -256,7 +256,7 @@ def render_recipe_html(recipe):
     extra = []
     fuente = recipe.get("fuente")
     if fuente == "propia":
-        extra.append('<p class="source">Receta propia de Ricardo.</p>')
+        extra.append('<p class="source">Receta propia.</p>')
     elif fuente:
         source = html.escape(fuente)
         extra.append(
@@ -272,7 +272,7 @@ def render_recipe_html(recipe):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)} — Recetas de Ricardo</title>
+<title>{html.escape(title)} — Recetario</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -393,7 +393,7 @@ def render_plan_week_html(plan, recipes_by_slug):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Semana {html.escape(str(semana))} &mdash; Recetas de Ricardo</title>
+<title>Semana {html.escape(str(semana))} &mdash; Recetario</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -474,7 +474,7 @@ def render_plan_index_html(plans, recipes_by_slug):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Planes semanales &mdash; Recetas de Ricardo</title>
+<title>Planes semanales &mdash; Recetario</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
