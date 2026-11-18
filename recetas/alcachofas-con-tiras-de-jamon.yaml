@@ -1,0 +1,20 @@
+titulo: Alcachofas con tiras de jamón
+tags: [alcachofa, cebolla, jamon-serrano, sarten, plato-principal, baja-en-kcal]
+raciones: 2
+kcal_racion: 220
+proteina_racion_g: 15
+aceite_cucharillas: 2
+momento: [comida, cena]
+sodio: alto
+ingredientes:
+  - texto: 8 alcachofas
+  - texto: media cebolla
+  - texto: 45 g de tiras de jamón serrano
+  - texto: 2 cucharillas de aceite
+  - texto: sal
+pasos:
+  - Limpiar las alcachofas y cocerlas en abundante agua con sal hasta que estén blandas.
+  - Picar la cebolla en brunoise y sofreírla con el aceite a fuego medio-bajo hasta que empiece a caramelizarse.
+  - Añadir las tiras de jamón y seguir sofriendo hasta que doren un poco.
+  - Incorporar las alcachofas, mezclar todo bien mientras se termina de sofreír y servir.
+fuente: propia
