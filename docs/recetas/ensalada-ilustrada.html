@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ensalada ilustrada — Recetario</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="back-link" href="../index.html">&larr; Todas las recetas</a>
+<article>
+<h1>Ensalada ilustrada</h1>
+<div class="badges"><span class="badge">470 kcal/ración</span><span class="badge">26 g proteína</span><span class="badge">2 cuch. aceite</span><span class="badge">2 raciones</span><span class="badge">comida</span><span class="badge">sodio alto</span></div>
+<div class="tags"><a class="tag" href="../index.html?tag=ensalada">ensalada</a><a class="tag" href="../index.html?tag=atun">atun</a><a class="tag" href="../index.html?tag=huevo">huevo</a><a class="tag" href="../index.html?tag=maiz">maiz</a><a class="tag" href="../index.html?tag=tomate">tomate</a><a class="tag" href="../index.html?tag=plato-principal">plato-principal</a><a class="tag" href="../index.html?tag=alta-proteina">alta-proteina</a></div>
+<p class="source">Receta propia.</p>
+<h2>Ingredientes (2 ración/es)</h2>
+<ul class="ingredients">
+<li>mezcla de lechugas variadas a mano (romana, escarola, iceberg, hoja de roble, etc.)</li>
+<li>200 g de tomates</li>
+<li>1 cebolleta</li>
+<li>140 g de maíz dulce</li>
+<li>3 huevos duros</li>
+<li>100 g de atún claro en aceite de oliva</li>
+<li>2 cucharillas de aceite de oliva virgen extra</li>
+<li>4 cucharillas de vinagre de sidra <span class="ingredient-link">(vinagre)</span></li>
+<li>sal</li>
+</ul>
+<h2>Pasos</h2>
+<section class="voice-mode" id="voice-mode">
+<p class="voice-privacy">
+El modo voz usa el reconocimiento de voz del navegador. En Chrome, el audio
+se envía a los servidores de Google para transcribirlo; en otros
+navegadores puede procesarse en el propio dispositivo. Si prefieres no usar
+el micrófono, los botones de abajo funcionan igual.
+</p>
+<div class="voice-controls">
+<button type="button" class="voice-button" id="voice-start">🎙️ Empezar la receta</button>
+<button type="button" class="voice-button voice-button-secondary" id="voice-stop" hidden>Detener</button>
+</div>
+<p class="voice-status" id="voice-status" aria-live="polite"></p>
+</section>
+<ol class="steps" id="steps">
+<li data-step-index="0">Lavar bien las hojas de lechuga y escurrirlas.</li>
+<li data-step-index="1">Cortar los tomates en dados grandes, la cebolleta en juliana y los huevos duros en cuartos.</li>
+<li data-step-index="2">Mezclar todos los ingredientes en un bol y aliñar con el aceite, el vinagre y la sal.</li>
+</ol>
+<div class="step-nav" id="step-nav">
+<button type="button" class="step-nav-button" id="step-prev">&larr; Paso anterior</button>
+<span class="step-nav-current" id="step-nav-current"></span>
+<button type="button" class="step-nav-button" id="step-next">Paso siguiente &rarr;</button>
+</div>
+<script type="application/json" id="steps-data">["Lavar bien las hojas de lechuga y escurrirlas.", "Cortar los tomates en dados grandes, la cebolleta en juliana y los huevos duros en cuartos.", "Mezclar todos los ingredientes en un bol y aliñar con el aceite, el vinagre y la sal."]</script>
+<script src="../assets/voice.js" defer></script>
+</article>
+</body>
+</html>
