@@ -377,8 +377,16 @@ def render_plan_week_html(plan, recipes_by_slug):
 
     compra = plan.get("lista_compra") or []
     if compra:
-        items = "\n".join(f"<li>{html.escape(str(item))}</li>" for item in compra)
-        sections.append(f'<h2>Lista de la compra (orientativa)</h2>\n<ul class="shopping-list">\n{items}\n</ul>')
+        items = "\n".join(
+            f'<li><label><input type="checkbox" class="shopping-check" data-index="{i}">'
+            f'<span>{html.escape(str(item))}</span></label></li>'
+            for i, item in enumerate(compra)
+        )
+        sections.append(
+            '<h2>Lista de la compra (orientativa)</h2>\n'
+            '<p class="plan-note">Puedes ir marcando lo que ya tienes en el carro; se queda guardado en este navegador.</p>\n'
+            f'<ul class="shopping-list" data-plan="{html.escape(plan["_slug"])}">\n{items}\n</ul>'
+        )
 
     return f"""<!doctype html>
 <html lang="es">
@@ -402,6 +410,7 @@ def render_plan_week_html(plan, recipes_by_slug):
 <p class="plan-note">Desayuno fijo todos los días, repartido durante la mañana hasta una hora antes de comer: café con leche de soja sin azúcar, yogur con frutos rojos y semillas, 20&nbsp;g de nueces y fruta de temporada. No cambia de una semana a otra, así que no se repite en la tabla; los totales de cada día ya lo incluyen. Las cifras son estimaciones, con un margen real de ±10&nbsp;%.</p>
 {"".join(sections)}
 </article>
+<script src="../assets/shopping-list.js" defer></script>
 </body>
 </html>
 """
@@ -486,7 +495,7 @@ def render_plan_index_html(plans, recipes_by_slug):
 
 def copy_assets():
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
-    for name in ("style.css", "search.js", "voice.js", "plan.js"):
+    for name in ("style.css", "search.js", "voice.js", "plan.js", "shopping-list.js"):
         shutil.copyfile(TEMPLATES_DIR / name, ASSETS_DIR / name)
     if IMAGES_DIR.exists():
         images_dest = ASSETS_DIR / "imagenes"
