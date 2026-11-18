@@ -424,10 +424,12 @@ def render_plan_card(plan, recipes_by_slug):
 
     return f"""<div class="card week-card" data-year="{html.escape(year)}" data-month="{html.escape(month)}">
   <a class="card-link" href="{html.escape(slug)}.html" aria-label="Semana {html.escape(str(semana))}"></a>
-  <h3>Semana {html.escape(str(semana))}</h3>
-  <p class="week-dates">{html.escape(date_range)}</p>
-  <div class="badges">{nuevas_badge}</div>
-  <p class="week-summary">{html.escape(resumen_short)}</p>
+  <div class="card-body">
+    <h3>Semana {html.escape(str(semana))}</h3>
+    <p class="week-dates">{html.escape(date_range)}</p>
+    <div class="badges">{nuevas_badge}</div>
+    <p class="week-summary">{html.escape(resumen_short)}</p>
+  </div>
 </div>"""
 
 
