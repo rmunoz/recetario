@@ -1,11 +1,11 @@
 ---
 name: plan-semanal-comidas
-description: Prepara un plan semanal de comidas (comida, merienda opcional y cena) para Ricardo a partir de su repositorio de recetas en YAML, respetando su desayuno fijo, su tope de 1800 kcal/día, su objetivo de proteína y su límite de aceite. Úsala siempre que pida un "plan semanal", "menú de la semana", "qué comemos esta semana", "planifica las comidas" o una lista de la compra basada en el repositorio de recetas, aunque no mencione la dieta.
+description: Prepara un plan semanal de comidas (comida, merienda opcional y cena) para el usuario a partir de su repositorio de recetas en YAML, respetando su desayuno fijo, su tope de 1800 kcal/día, su objetivo de proteína y su límite de aceite. Úsala siempre que pida un "plan semanal", "menú de la semana", "qué comemos esta semana", "planifica las comidas" o una lista de la compra basada en el repositorio de recetas, aunque no mencione la dieta.
 ---
 
 # Plan semanal de comidas
 
-Combina las recetas del repositorio de Ricardo con su desayuno fijo y sus platos habituales para montar una semana equilibrada de lunes a domingo dentro de su dieta hipocalórica. Responde en español.
+Combina las recetas del repositorio del usuario con su desayuno fijo y sus platos habituales para montar una semana equilibrada de lunes a domingo dentro de su dieta hipocalórica. Responde en español.
 
 ## Antes de empezar
 
@@ -40,7 +40,7 @@ Muestra el plan en el chat, no en un fichero, salvo que el usuario pida guardarl
 3. Un resumen del equilibrio semanal en 3-4 líneas, sin repetir la tabla.
 4. Una línea que indique qué cifras son estimaciones (platos habituales y desayuno) y cuáles vienen de recetas del repositorio.
 
-Ofrece al final la lista de la compra para 2 personas, sin generarla si no la piden. Es orientativa, no exacta (Ricardo ya sabe lo que tiene en la despensa): agrupa por ingrediente (usa el slug de `ingrediente:` cuando la receta lo tiene, si no el nombre normalizado) y suma solo cantidades simples con la misma unidad ("1 cebolla" + "2 cebollas" → "3 cebollas"); si no son sumables a simple vista, agrúpalas bajo el mismo ingrediente sin forzar un número. Si se guarda el plan en fichero, guarda también esta lista en `lista_compra`.
+Ofrece al final la lista de la compra para 2 personas, sin generarla si no la piden. Es orientativa, no exacta (el usuario ya sabe lo que tiene en la despensa): agrupa por ingrediente (usa el slug de `ingrediente:` cuando la receta lo tiene, si no el nombre normalizado) y suma solo cantidades simples con la misma unidad ("1 cebolla" + "2 cebollas" → "3 cebollas"); si no son sumables a simple vista, agrúpalas bajo el mismo ingrediente sin forzar un número. Si se guarda el plan en fichero, guarda también esta lista en `lista_compra`.
 
 ## Honestidad con los datos
 

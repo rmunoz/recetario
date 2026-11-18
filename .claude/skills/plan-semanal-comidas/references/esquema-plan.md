@@ -1,6 +1,6 @@
 # Esquema del plan semanal guardado
 
-Cuando Ricardo pide guardar el plan, se crea `plan/YYYY/semanaXX.yaml` (`XX` el número de semana ISO con dos cifras, p. ej. `semana47.yaml`). El script `scripts/generate_site.py` lee estos campos para publicar el histórico en `docs/plan/`, y `scripts/read_plans.py` para que la skill pueda mirar semanas anteriores: no cambies sus nombres ni sus tipos.
+Cuando el usuario pide guardar el plan, se crea `plan/YYYY/semanaXX.yaml` (`XX` el número de semana ISO con dos cifras, p. ej. `semana47.yaml`). El script `scripts/generate_site.py` lee estos campos para publicar el histórico en `docs/plan/`, y `scripts/read_plans.py` para que la skill pueda mirar semanas anteriores: no cambies sus nombres ni sus tipos.
 
 ## Campos de cabecera
 
@@ -81,4 +81,4 @@ lista_compra:
 
 - Las cifras de `kcal`/`proteina_g` son estimaciones (±10 % real), igual que en las recetas: no las presentes como exactas.
 - `lista_compra` agrupa por ingrediente (usa el slug de `ingrediente:` cuando la receta lo tiene, si no el nombre normalizado); suma cantidades solo cuando son números simples con la misma unidad ("1 cebolla" + "2 cebollas" → "3 cebollas"). Si no son sumables a simple vista, se agrupan bajo el mismo ingrediente sin forzar un número.
-- El fichero se publica tal cual en `docs/plan/`: el repositorio ya es público, así que no incluyas en `resumen_semanal` ni en `lista_compra` nada que Ricardo no quiera ver en la web.
+- El fichero se publica tal cual en `docs/plan/`: el repositorio ya es público, así que no incluyas en `resumen_semanal` ni en `lista_compra` nada que el usuario no quiera ver en la web.

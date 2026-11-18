@@ -22,7 +22,7 @@ Cada ingrediente es un fichero `.yaml` en `ingredientes/`. El nombre del fichero
 | `omega3_g` | número | no | Omega-3 en gramos por `unidad_ref`, si la etiqueta lo indica |
 | `otros` | mapa | no | Vitaminas y minerales que no tienen campo propio, p. ej. `calcio_mg`, `yodo_microgr`, `vitamina_d2_microgr`. La clave incluye la unidad |
 | `nota` | texto | no | Aclaración útil, p. ej. la equivalencia en cucharadas (`una cucharada = 15 g`) o el peso de una unidad habitual |
-| `fuente` | texto | sí | `etiqueta` (del envase real de Ricardo), una URL, o `estimado` si es un valor de referencia sin confirmar |
+| `fuente` | texto | sí | `etiqueta` (del envase real del usuario), una URL, o `estimado` si es un valor de referencia sin confirmar |
 
 Ejemplo:
 
@@ -49,5 +49,5 @@ fuente: etiqueta
 
 - `receta-adaptada` busca primero en `ingredientes/` el slug de cada ingrediente de la receta. Si lo encuentra, usa esas cifras para la estimación de kcal/proteína y lo enlaza en el campo `ingrediente` de la receta. Si no existe, usa valores de referencia propios y lo marca como estimado, sin inventar un fichero nuevo en `ingredientes/` por su cuenta.
 - El planificador y el cálculo de kcal de una receta solo necesitan `kcal`, `proteina_g`, `grasa_g`, `hidratos_g`, `fibra_g` y `sal_g`. El resto de campos (desglose de grasas, azúcares, omega-3, `otros`) son para consulta y no los usa ningún script.
-- Cuando Ricardo da el valor real de un ingrediente (de su propia etiqueta), ese valor manda sobre cualquier referencia genérica.
+- Cuando el usuario da el valor real de un ingrediente (de su propia etiqueta), ese valor manda sobre cualquier referencia genérica.
 - Las cifras son estimaciones si `fuente: estimado`; con `fuente: etiqueta` se consideran fiables salvo que cambie el producto.
