@@ -1,0 +1,15 @@
+nombre: Queso de fundir en lonchas
+categoria: lacteos
+unidad_ref: 100 g
+kcal: 208
+proteina_g: 14
+grasa_g: 12
+grasa_saturada_g: 8
+hidratos_g: 8.9
+azucares_g: 6.2
+fibra_g: 0
+sal_g: 2.5
+otros:
+  calcio_mg: 490
+nota: una loncha = 18,75 g
+fuente: etiqueta

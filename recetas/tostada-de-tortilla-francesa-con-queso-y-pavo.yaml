@@ -1,0 +1,25 @@
+titulo: Tostada de tortilla francesa con queso y pavo
+tags: [huevo, tortilla-francesa, queso, pavo, tomate, pan, tostada, sartén]
+raciones: 1
+kcal_racion: 440
+proteina_racion_g: 31
+aceite_cucharillas: 1
+momento: [comida, cena]
+sodio: alto
+ingredientes:
+  - texto: 1 rebanada de pan de 50 g
+  - texto: ½ tomate en lonchas finas
+  - texto: 2 huevos medianos
+  - texto: 1 loncha y media de queso de fundir (unos 28 g)
+    ingrediente: queso-fundir-lonchas
+  - texto: 1 cucharilla de aceite
+    ingrediente: aceite-oliva
+  - texto: 3 filetes de pavo cocido (55 g)
+pasos:
+  - Tostar la rebanada de pan en la tostadora.
+  - Cortar el medio tomate en lonchas finas y colocarlas sobre la tostada.
+  - Batir los 2 huevos con varillas durante un buen rato, hasta que queden bien esponjosos.
+  - Trocear el queso de fundir en trozos pequeños y mezclarlo con el huevo batido.
+  - Calentar la cucharilla de aceite en una sartén, echar el huevo con el queso y remover hasta que la tortilla cuaje al punto que guste.
+  - Poner la tortilla sobre la tostada con el tomate y rematar con los 3 filetes de pavo cocido.
+fuente: propia
