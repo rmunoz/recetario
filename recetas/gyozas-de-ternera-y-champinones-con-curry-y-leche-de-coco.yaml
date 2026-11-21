@@ -11,29 +11,32 @@ sodio: medio
 ingredientes:
   - texto: 20 obleas de gyoza congeladas (160 g)
     ingrediente: obleas-gyoza
-  - texto: "Relleno:"
-  - texto: 120 g de carne picada de ternera magra
-  - texto: 100 g de champiñones
-  - texto: 1 cebolleta
-  - texto: 1 diente de ajo
-  - texto: ½ cucharadita de jengibre fresco rallado
-  - texto: 1 cucharadita de salsa de soja
-    ingrediente: salsa-soja
-  - texto: pimienta negra
-  - texto: "Salsa:"
-  - texto: 200 ml de leche de coco light
-  - texto: 150 ml de agua
-  - texto: 1 cucharada de curry en polvo
-  - texto: 1 cucharada de salsa de soja
-    ingrediente: salsa-soja
-  - texto: "Aceite aromático:"
-  - texto: 1 cucharilla de aceite de oliva suave (o de girasol)
-    ingrediente: aceite-oliva
-  - texto: 1 cucharilla de semillas de sésamo
-    ingrediente: semillas-sesamo-tostado
-  - texto: 1 diente de ajo
-  - texto: 1 manojito de cebollino (unos 10 g)
-  - texto: 3 tallos de cilantro
+  - grupo: Relleno
+    items:
+      - texto: 120 g de carne picada de ternera magra
+      - texto: 100 g de champiñones
+      - texto: 1 cebolleta
+      - texto: 1 diente de ajo
+      - texto: ½ cucharadita de jengibre fresco rallado
+      - texto: 1 cucharadita de salsa de soja
+        ingrediente: salsa-soja
+      - texto: pimienta negra
+  - grupo: Salsa
+    items:
+      - texto: 200 ml de leche de coco light
+      - texto: 150 ml de agua
+      - texto: 1 cucharada de curry en polvo
+      - texto: 1 cucharada de salsa de soja
+        ingrediente: salsa-soja
+  - grupo: Aceite aromático
+    items:
+      - texto: 1 cucharilla de aceite de oliva suave (o de girasol)
+        ingrediente: aceite-oliva
+      - texto: 1 cucharilla de semillas de sésamo
+        ingrediente: semillas-sesamo-tostado
+      - texto: 1 diente de ajo
+      - texto: 1 manojito de cebollino (unos 10 g)
+      - texto: 3 tallos de cilantro
 pasos:
   - Sacar las obleas del congelador y descongelarlas como indique el paquete (suele bastar un rato a temperatura ambiente). Mantenerlas tapadas con un paño húmedo para que no se resequen.
   - Limpiar los champiñones y picarlos muy finos, igual que la cebolleta y el ajo. Si sueltan mucho agua, escurrirlos un poco apretándolos con la mano.
