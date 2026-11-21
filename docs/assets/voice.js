@@ -184,7 +184,9 @@
   }
 
   function speakIngredients() {
-    var texts = Array.prototype.map.call(document.querySelectorAll(".ingredients li"), function (li) {
+    // Group headings (.ingredient-group) and ingredients come back in
+    // document order, so the group name is read before its ingredients.
+    var texts = Array.prototype.map.call(document.querySelectorAll(".ingredient-group, .ingredients li"), function (li) {
       var clone = li.cloneNode(true);
       var link = clone.querySelector(".ingredient-link");
       if (link) {
