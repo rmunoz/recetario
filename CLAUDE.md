@@ -78,6 +78,7 @@ imagen: imagenes/coliflor-especiada-con-yogur-y-granada.jpg   # opcional; URL ex
 - `kcal_racion` y `proteina_racion_g` son **por persona**; `aceite_cucharillas` es de la receta completa.
 - Tags en minúsculas, sin acentos, con guiones. Cifras como números, sin unidades.
 - Cada elemento de `ingredientes` lleva `texto` (cantidad y nombre tal cual se usaría en la cocina) y, si el ingrediente existe en `ingredientes/`, su slug en `ingrediente`.
+- `ingredientes` puede ser una lista plana o llevar **grupos** cuando la receta tiene partes distintas (relleno y salsa, puré y salsa...): un elemento `grupo: <nombre>` con su lista `items`, que se muestra con un subtítulo en la web. Los ingredientes sueltos y los grupos se pueden mezclar (los sueltos salen sin título), un grupo no puede contener otro grupo y debe tener al menos un ingrediente. Los `pasos` siguen siendo una lista lineal (el modo voz los recorre uno a uno), aunque los ingredientes estén agrupados. No uses líneas tipo `"Relleno:"` como ingrediente.
 
 El esquema completo y un ejemplo están en `.claude/skills/receta-adaptada/references/`.
 

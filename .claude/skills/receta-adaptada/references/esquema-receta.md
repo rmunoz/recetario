@@ -33,6 +33,29 @@ Lista de ingredientes de la receta completa (para `raciones` personas), en orden
 - `texto` es siempre obligatorio y es lo que se muestra: cantidad y nombre tal cual se usarían en la cocina.
 - `ingrediente` es opcional y enlaza con un fichero de `ingredientes/` (ver `esquema-ingrediente.md`) cuando ese ingrediente está en el repositorio. Sirve para poder recalcular o comprobar las kcal más adelante; no es obligatorio tenerlo para todos los ingredientes (especias, sal, agua... normalmente no lo necesitan).
 
+### Grupos de ingredientes
+
+Cuando la receta tiene partes distintas (relleno y salsa, puré y salsa...), agrupa los ingredientes. Un elemento de `ingredientes` puede ser un grupo en vez de un ingrediente:
+
+```yaml
+ingredientes:
+  - texto: 20 obleas de gyoza congeladas (160 g)   # suelto: sale primero, sin título
+    ingrediente: obleas-gyoza
+  - grupo: Relleno
+    items:
+      - texto: 150 g de repollo
+      - texto: 1 cucharadita de salsa de soja
+        ingrediente: salsa-soja
+  - grupo: Salsa
+    items:
+      - texto: 200 ml de leche de coco light
+```
+
+- Una lista plana sigue siendo válida: agrupa solo cuando ayude (dos o más partes claras).
+- Los ingredientes sueltos y los grupos se pueden mezclar. Un grupo lleva `grupo` (nombre) e `items` (lista no vacía de ingredientes con `texto` e `ingrediente` opcional) y **no puede contener otro grupo**.
+- Los `pasos` no se agrupan: siguen siendo una lista lineal, para que el modo voz los recorra uno a uno.
+- No uses líneas de texto tipo `"Relleno:"` como falso encabezado.
+
 Ejemplo completo:
 
 ```yaml

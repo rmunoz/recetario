@@ -225,6 +225,12 @@ article h2 {
   margin-bottom: 0.6rem;
 }
 
+.ingredient-group {
+  margin: 1.1rem 0 0.3rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
 .ingredient-link {
   color: var(--color-text-muted);
   font-size: 0.85rem;

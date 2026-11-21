@@ -29,6 +29,7 @@ Si una adaptación estropea el plato de verdad (por ejemplo, un postre que depen
 ## Reglas del fichero
 
 - `ingredientes` conserva el orden de la receta original, un elemento por ingrediente con su `texto` (cantidad y nombre tal cual se usaría en la cocina) y, cuando exista en el repositorio, el slug en `ingrediente`.
+- Si la receta tiene partes claramente distintas (relleno y salsa, puré y salsa...), agrupa los ingredientes con `grupo` e `items` (ver `references/esquema-receta.md`); los `pasos` no se agrupan. En una receta de una sola parte, deja la lista plana.
 - `pasos` es una lista con un elemento por paso, en el mismo orden y con las mismas técnicas, tiempos y temperaturas que la receta original, pero **redactados siempre con tus propias palabras**, nunca copiados ni traducidos casi literalmente del texto fuente. Usa un estilo directo y práctico, como en `recetas/borraja-con-almejas.yaml` (receta propia del usuario). Esto aplica también cuando la fuente es un enlace que has leído tú mismo.
 - Añade `fuente: <url>` con el enlace original. Si el usuario dicta una receta propia (no viene de internet), pon `fuente: propia` en vez de omitir la clave.
 - Añade `imagen: <url>` solo si el usuario da una URL. El campo es opcional: si no hay imagen, omite la clave entera (no escribas "pendiente" ni `null`).

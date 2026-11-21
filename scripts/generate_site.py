@@ -113,6 +113,34 @@ def validate_variants(recipes):
     return variants_by_parent
 
 
+def validate_ingredients(recipes):
+    """Check the shape of the ingredientes list.
+
+    Each element is either an ingredient ({texto, ingrediente?}) or a group
+    ({grupo, items: [ingredients]}). Groups can't be nested and need a name
+    and at least one item. A flat list of ingredients stays valid.
+    """
+    errors = []
+    for recipe in recipes:
+        slug = recipe["_slug"]
+        for entry in recipe.get("ingredientes") or []:
+            if isinstance(entry, dict) and "grupo" in entry:
+                name = entry.get("grupo")
+                items = entry.get("items")
+                if not name:
+                    errors.append(f"{slug}: a grupo needs a name")
+                if not isinstance(items, list) or not items:
+                    errors.append(f"{slug}: grupo '{name}' needs a non-empty items list")
+                    continue
+                for item in items:
+                    if isinstance(item, dict) and "grupo" in item:
+                        errors.append(f"{slug}: grupo '{name}' contains another grupo (groups can't be nested)")
+    if errors:
+        for e in errors:
+            print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
 def variant_label(recipe):
     """Short text shown on the main recipe's page; falls back to the title."""
     return recipe.get("variante_resumen") or recipe.get("titulo", recipe["_slug"])
@@ -277,6 +305,33 @@ def render_ingredient(item):
     return f"<li>{html.escape(text)}{extra}</li>"
 
 
+def render_ingredients(entries):
+    """Ingredients as <ul> lists, with an <h3> heading before each group.
+
+    Plain ingredients and groups can be mixed; consecutive plain ones share
+    a list, and a group always starts its own heading and list.
+    """
+    pieces, plain = [], []
+
+    def flush():
+        if plain:
+            pieces.append('<ul class="ingredients">\n' + "\n".join(plain) + "\n</ul>")
+            plain.clear()
+
+    for entry in entries or []:
+        if isinstance(entry, dict) and "grupo" in entry:
+            flush()
+            items = "\n".join(render_ingredient(i) for i in entry.get("items") or [])
+            pieces.append(
+                f'<h3 class="ingredient-group">{html.escape(str(entry["grupo"]))}</h3>\n'
+                f'<ul class="ingredients">\n{items}\n</ul>'
+            )
+        else:
+            plain.append(render_ingredient(entry))
+    flush()
+    return "\n".join(pieces)
+
+
 def image_src(imagen):
     """URLs are used as-is; a local path (imagenes/foo.jpg) resolves to the
     copy of imagenes/ that copy_assets() places under docs/assets/."""
@@ -303,7 +358,7 @@ def render_variants_box(variants):
 
 def render_recipe_html(recipe, recipes_by_slug, variants_by_parent):
     title = recipe.get("titulo", recipe["_slug"])
-    ingredients_html = "\n".join(render_ingredient(i) for i in recipe.get("ingredientes", []) or [])
+    ingredients_html = render_ingredients(recipe.get("ingredientes"))
     steps = recipe.get("pasos", []) or []
     steps_html = "\n".join(
         f'<li data-step-index="{i}">{html.escape(step)}</li>'
@@ -356,9 +411,7 @@ def render_recipe_html(recipe, recipes_by_slug, variants_by_parent):
 <div class="tags">{render_tags(recipe.get("tags"), "../index.html")}</div>
 {"".join(extra)}
 <h2>Ingredientes ({recipe.get("raciones", "?")} ración/es)</h2>
-<ul class="ingredients">
 {ingredients_html}
-</ul>
 <h2>Pasos</h2>
 <section class="voice-mode" id="voice-mode">
 <p class="voice-privacy">
@@ -599,6 +652,7 @@ def main():
     recipes = load_recipes()
     recipes_by_slug = {r["_slug"]: r for r in recipes}
     variants_by_parent = validate_variants(recipes)
+    validate_ingredients(recipes)
 
     if RECIPES_HTML_DIR.exists():
         shutil.rmtree(RECIPES_HTML_DIR)
