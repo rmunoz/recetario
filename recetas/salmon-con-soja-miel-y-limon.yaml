@@ -1,0 +1,32 @@
+titulo: Salmón con soja, miel y limón
+tags: [salmon, pescado, soja, miel, limon, sarten, salsa, plato-principal, rapida, alta-en-proteina]
+raciones: 2
+kcal_racion: 340
+proteina_racion_g: 27
+aceite_cucharillas: 1
+momento: [comida, cena]
+sodio: alto
+ingredientes:
+  - texto: 250 g de filetes de salmón (2 filetes de unos 125 g)
+    ingrediente: salmon
+  - texto: 2 cucharadas de salsa de soja (mejor baja en sal)
+    ingrediente: salsa-soja
+  - texto: 1 cucharada de miel
+  - texto: 2 cucharadas de zumo de limón o lima
+  - texto: 1 diente de ajo pequeño
+  - texto: ½ dedo de jengibre fresco o ½ cucharadita en polvo (opcional)
+  - texto: 1 cucharilla de aceite de oliva suave
+    ingrediente: aceite-oliva
+  - texto: 1 cucharilla de semillas de sésamo (opcional)
+    ingrediente: semillas-sesamo-tostado
+  - texto: cebollino, perejil o cilantro picado (opcional)
+  - texto: pimienta negra
+  - texto: una pizca de sal
+pasos:
+  - Sazonar el salmón con muy poca sal y algo de pimienta, y dejarlo reposar. Conviene no pasarse con la sal, porque la soja ya es salada.
+  - Mezclar en un bol la soja, la miel, el zumo de limón o lima, el ajo rallado y, si se usa, el jengibre rallado o en polvo.
+  - Secar los filetes con papel de cocina, untarlos con la cucharilla de aceite y dorarlos por los dos lados en una sartén antiadherente bien caliente.
+  - Cuando estén dorados, pasarlos a un plato.
+  - Bajar el fuego y esperar un momento a que la sartén se enfríe un poco. Echar la salsa y dejar que burbujee y espese. Volver a poner el salmón y darle vueltas para que se impregne bien de salsa.
+  - Servir con el sésamo y el cebollino, el perejil o el cilantro por encima, si se quiere.
+fuente: https://elpais.com/gastronomia/el-comidista/2025-09-04/salmon-con-soja-miel-y-limon-otra-cena-de-entresemana-en-15-minutos.html
