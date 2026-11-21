@@ -17,6 +17,8 @@ Cada receta es un fichero `.yaml` en `recetas/`. La skill `plan-semanal-comidas`
 | `ingredientes` | lista | sí | Ver más abajo |
 | `pasos` | lista de texto | sí | Un elemento por paso, en orden |
 | `fuente` | texto | sí | URL original, o `propia` si es una receta propia del usuario (no viene de internet) |
+| `variante_de` | texto | no | Slug de la receta principal, si esta receta es una variante suya (ver "Variantes" más abajo) |
+| `variante_resumen` | texto | no | Solo con `variante_de`: texto corto que se muestra en la página de la principal. Si falta, se usa el `titulo` |
 | `imagen` | texto | no | URL de la imagen, o ruta relativa a un fichero en `imagenes/` (p. ej. `imagenes/<slug>.jpg`). Si no hay, se omite la clave entera (nunca `null` ni "pendiente") |
 
 ### `ingredientes`
@@ -55,6 +57,16 @@ fuente: https://ejemplo.com/receta-original
 ```
 
 Ver `references/ejemplo-coliflor.yaml` como modelo exacto, con la receta completa.
+
+## Variantes
+
+Una variante es una receta completa (con sus propios `ingredientes`, `pasos` y cifras) que declara `variante_de: <slug de la principal>`. Reglas: la principal tiene que existir, no puede ser a su vez una variante (una variante no tiene variantes) y la variante no apunta a sí misma. En la web las variantes no salen en el listado, solo al buscar y en la página de la principal. Crea una variante, y no una receta nueva, cuando el plato es el mismo con un añadido o una reducción (p. ej. "con patata cocida", "versión más ligera").
+
+```yaml
+titulo: Judías verdes con tomate y patata
+variante_de: judias-verdes-con-tomate
+variante_resumen: Con patata cocida, para que sea un plato más completo
+```
 
 ## Notas
 

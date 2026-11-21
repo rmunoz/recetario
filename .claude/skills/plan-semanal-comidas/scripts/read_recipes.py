@@ -59,12 +59,12 @@ def main():
                 warnings.append(f"{f.name}: '{field}' should be a number, got '{data[field]}'")
         rows.append((f.name, data))
 
-    print("| file | title | momento | kcal | protein_g | oil_tsp | sodio | tags |")
-    print("|---|---|---|---|---|---|---|---|")
+    print("| file | title | variant_of | momento | kcal | protein_g | oil_tsp | sodio | tags |")
+    print("|---|---|---|---|---|---|---|---|---|")
     for name, data in rows:
         momento = ",".join(data.get("momento", [])) or "(not set)"
         tags = ",".join(data.get("tags", [])) if isinstance(data.get("tags"), list) else data.get("tags", "")
-        print(f"| {name} | {data.get('titulo', '?')} | {momento} | {data.get('kcal_racion', '?')} "
+        print(f"| {name} | {data.get('titulo', '?')} | {data.get('variante_de', '')} | {momento} | {data.get('kcal_racion', '?')} "
               f"| {data.get('proteina_racion_g', '?')} | {data.get('aceite_cucharillas', '?')} "
               f"| {data.get('sodio', '?')} | {tags} |")
 

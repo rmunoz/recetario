@@ -83,6 +83,41 @@ def load_recipes():
     return recipes
 
 
+def validate_variants(recipes):
+    """Check the variante_de links and return {parent slug: [variants]}.
+
+    Rules: a variant points to an existing main recipe, never to itself, and
+    never to another variant (a variant can't have variants). Broken links
+    abort the run, so the pre-commit hook and the PR workflow catch them.
+    """
+    by_slug = {r["_slug"]: r for r in recipes}
+    variants_by_parent = {}
+    errors = []
+    for recipe in recipes:
+        parent = recipe.get("variante_de")
+        if parent is None:
+            continue
+        slug = recipe["_slug"]
+        if parent == slug:
+            errors.append(f"{slug}: variante_de can't point to itself")
+        elif parent not in by_slug:
+            errors.append(f"{slug}: variante_de '{parent}' does not exist in recetas/")
+        elif by_slug[parent].get("variante_de") is not None:
+            errors.append(f"{slug}: variante_de '{parent}' is itself a variant (a variant can't have variants)")
+        else:
+            variants_by_parent.setdefault(parent, []).append(recipe)
+    if errors:
+        for e in errors:
+            print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+    return variants_by_parent
+
+
+def variant_label(recipe):
+    """Short text shown on the main recipe's page; falls back to the title."""
+    return recipe.get("variante_resumen") or recipe.get("titulo", recipe["_slug"])
+
+
 def load_plans():
     """Weekly plans are optional: no plan/ yet just means no history to show."""
     if not PLAN_DIR.exists():
@@ -160,11 +195,13 @@ def recipe_badges(recipe):
     return "".join(p for p in pieces if p)
 
 
-def render_card(recipe):
+def render_card(recipe, recipes_by_slug):
     slug = recipe["_slug"]
     title = recipe.get("titulo", slug)
     tags = recipe.get("tags") or []
-    imagen = recipe.get("imagen")
+    parent = recipes_by_slug.get(recipe.get("variante_de"))
+    # A variant without its own photo borrows the main recipe's one.
+    imagen = recipe.get("imagen") or (parent or {}).get("imagen")
     if imagen:
         image_html = (
             f'<img class="card-image" src="{html.escape(image_src(imagen))}" '
@@ -177,19 +214,24 @@ def render_card(recipe):
     # The card itself is a link to the recipe, but tags are links too (to
     # filter by tag), and an <a> can't contain another <a>. card-link is an
     # invisible overlay instead, see .card/.card-link in style.css.
-    return f"""<div class="card" data-search="{search_text(recipe)}" data-tags="{html.escape('|'.join(tags))}">
+    # Variants stay out of the listing (hidden) and only show up when a
+    # search matches them; search.js toggles the hidden attribute.
+    variant_attr = " hidden data-variant" if parent else ""
+    variant_badge = badge(f"variante de {parent.get('titulo', parent['_slug'])}") if parent else ""
+    return f"""<div class="card" data-search="{search_text(recipe)}" data-tags="{html.escape('|'.join(tags))}"{variant_attr}>
   <a class="card-link" href="recetas/{html.escape(slug)}.html" aria-label="{html.escape(title)}"></a>
   {image_html}
   <div class="card-body">
     <h3>{html.escape(title)}</h3>
-    <div class="badges">{recipe_badges(recipe)}</div>
+    <div class="badges">{variant_badge}{recipe_badges(recipe)}</div>
     <div class="tags">{render_tags(tags, "index.html")}</div>
   </div>
 </div>"""
 
 
-def render_index_html(recipes):
-    cards_html = "\n".join(render_card(r) for r in recipes)
+def render_index_html(recipes, recipes_by_slug):
+    main_count = sum(1 for r in recipes if not r.get("variante_de"))
+    cards_html = "\n".join(render_card(r, recipes_by_slug) for r in recipes)
     return f"""<!doctype html>
 <html lang="es">
 <head>
@@ -201,7 +243,7 @@ def render_index_html(recipes):
 <body>
 <header>
   <h1>Recetario</h1>
-  <p class="subtitle">Dieta hipocalórica para 2 — {len(recipes)} recetas</p>
+  <p class="subtitle">Dieta hipocalórica para 2 — {main_count} recetas</p>
   <a class="plan-banner" href="plan/index.html">
     <span class="plan-banner-icon" aria-hidden="true">&#128197;</span>
     <span class="plan-banner-text">
@@ -243,7 +285,23 @@ def image_src(imagen):
     return f"../assets/{imagen}"
 
 
-def render_recipe_html(recipe):
+def render_variants_box(variants):
+    items = []
+    for v in variants:
+        stats = []
+        if v.get("kcal_racion") is not None:
+            stats.append(f"{v['kcal_racion']} kcal/ración")
+        if v.get("proteina_racion_g") is not None:
+            stats.append(f"{v['proteina_racion_g']} g proteína")
+        stats_html = f' <span class="variant-stats">({", ".join(stats)})</span>' if stats else ""
+        items.append(
+            f'<li><a href="{html.escape(v["_slug"])}.html">{html.escape(variant_label(v))}</a>{stats_html}</li>'
+        )
+    heading = "Variante" if len(variants) == 1 else "Variantes"
+    return f'<section class="variants"><h2>{heading}</h2>\n<ul>\n{"".join(items)}\n</ul></section>'
+
+
+def render_recipe_html(recipe, recipes_by_slug, variants_by_parent):
     title = recipe.get("titulo", recipe["_slug"])
     ingredients_html = "\n".join(render_ingredient(i) for i in recipe.get("ingredientes", []) or [])
     steps = recipe.get("pasos", []) or []
@@ -267,6 +325,20 @@ def render_recipe_html(recipe):
         image = html.escape(image_src(recipe["imagen"]))
         extra.append(f'<img class="image" src="{image}" alt="{html.escape(title)}">')
 
+    variant_html = ""
+    parent = recipes_by_slug.get(recipe.get("variante_de"))
+    if parent:
+        variant_html = (
+            f'<p class="variant-note">Variante de '
+            f'<a href="{html.escape(parent["_slug"])}.html">{html.escape(parent.get("titulo", parent["_slug"]))}</a></p>'
+        )
+        if not recipe.get("imagen") and parent.get("imagen"):
+            image = html.escape(image_src(parent["imagen"]))
+            extra.append(f'<img class="image" src="{image}" alt="{html.escape(title)}">')
+    variants = variants_by_parent.get(recipe["_slug"])
+    if variants:
+        variant_html += render_variants_box(variants)
+
     return f"""<!doctype html>
 <html lang="es">
 <head>
@@ -279,6 +351,7 @@ def render_recipe_html(recipe):
 <a class="back-link" href="../index.html">&larr; Todas las recetas</a>
 <article>
 <h1>{html.escape(title)}</h1>
+{variant_html}
 <div class="badges">{recipe_badges(recipe)}</div>
 <div class="tags">{render_tags(recipe.get("tags"), "../index.html")}</div>
 {"".join(extra)}
@@ -525,6 +598,7 @@ def main():
 
     recipes = load_recipes()
     recipes_by_slug = {r["_slug"]: r for r in recipes}
+    variants_by_parent = validate_variants(recipes)
 
     if RECIPES_HTML_DIR.exists():
         shutil.rmtree(RECIPES_HTML_DIR)
@@ -533,9 +607,9 @@ def main():
 
     for recipe in recipes:
         destination = RECIPES_HTML_DIR / f"{recipe['_slug']}.html"
-        destination.write_text(render_recipe_html(recipe), encoding="utf-8")
+        destination.write_text(render_recipe_html(recipe, recipes_by_slug, variants_by_parent), encoding="utf-8")
 
-    (DOCS_DIR / "index.html").write_text(render_index_html(recipes), encoding="utf-8")
+    (DOCS_DIR / "index.html").write_text(render_index_html(recipes, recipes_by_slug), encoding="utf-8")
 
     plans = load_plans()
     if PLAN_HTML_DIR.exists():

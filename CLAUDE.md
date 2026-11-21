@@ -81,6 +81,19 @@ imagen: imagenes/coliflor-especiada-con-yogur-y-granada.jpg   # opcional; URL ex
 
 El esquema completo y un ejemplo están en `.claude/skills/receta-adaptada/references/`.
 
+### Variantes de una receta
+
+Una receta puede tener variantes (p. ej. judías verdes con tomate **y patata**, o el yogur con frutos rojos en versión más ligera). Cada variante es **un fichero `.yaml` completo** (sus propios ingredientes, pasos y cifras) con dos claves opcionales extra:
+
+```yaml
+variante_de: judias-verdes-con-tomate          # slug de la receta principal
+variante_resumen: Con patata cocida, para que sea un plato más completo   # texto corto que se ve en la principal; si falta, se usa el título
+```
+
+- Una principal puede tener varias variantes, pero **una variante no puede tener otras variantes** ni apuntar a sí misma; `generate_site.py` aborta si `variante_de` apunta a algo inexistente o a otra variante.
+- Las variantes **no salen en el listado** de la web, solo en la búsqueda (por título, tags, etc.). En la página de la receta principal aparece un recuadro "Variante(s)" con enlace y cifras, y la página de la variante enlaza de vuelta a la principal. Si la variante no tiene `imagen`, se usa la de la principal.
+- Las variantes llevan sus cifras propias (`kcal_racion`, etc.) y se pueden usar en un plan semanal igual que cualquier receta (`receta: <slug de la variante>`).
+
 ## Formato de plan semanal guardado
 
 Cuando se guarda un plan (lo pide Ricardo tras ajustar lo que la skill propuso en el chat), se crea `plan/YYYY/semanaXX.yaml`: cabecera con `semana` (id ISO `AAAA-Wnn`), `fecha_inicio`/`fecha_fin`, los 7 días (`dias.lunes`...`dias.domingo`) con `comida`/`merienda`/`cena` (cada una con `tipo`: `receta`, `plato_habitual` o `pauta_base`, `texto`, `kcal`, `proteina_g`, y `receta` con el slug si `tipo: receta`) y `totales` del día, más `recetas_nuevas`, `resumen_semanal` y `lista_compra` (opcional, orientativa) a nivel de semana. El esquema completo y un ejemplo están en `.claude/skills/plan-semanal-comidas/references/esquema-plan.md`.
@@ -108,7 +121,7 @@ Cuando cambie una convención, actualiza a la vez este fichero y la skill afecta
 
 ## Sitio estático (GitHub Pages)
 
-`scripts/generate_site.py` lee `recetas/*.yaml` y `plan/**/*.yaml` y genera `docs/`: un listado de recetas (`docs/index.html`) con buscador en JS por título/tags/momento, una página por receta (`docs/recetas/<slug>.html`), y un histórico de planes semanales (`docs/plan/index.html`, con filtro rápido por año y mes, y `docs/plan/<slug>.html` por semana, enlazando a la receta cuando la comida es `tipo: receta`). Sin backend, sin dependencias externas, todo client-side. Si `plan/` no existe o está vacío, `docs/plan/index.html` se genera igual con un aviso de que no hay planes todavía. El código del generador (nombres, comentarios) está en inglés; el texto que se ve en la página sigue en español, como el resto del contenido del repositorio.
+`scripts/generate_site.py` lee `recetas/*.yaml` y `plan/**/*.yaml` y genera `docs/`: un listado de recetas principales (`docs/index.html`; las variantes solo aparecen al buscar) con buscador en JS por título/tags/momento, una página por receta (`docs/recetas/<slug>.html`), y un histórico de planes semanales (`docs/plan/index.html`, con filtro rápido por año y mes, y `docs/plan/<slug>.html` por semana, enlazando a la receta cuando la comida es `tipo: receta`). Sin backend, sin dependencias externas, todo client-side. Si `plan/` no existe o está vacío, `docs/plan/index.html` se genera igual con un aviso de que no hay planes todavía. El código del generador (nombres, comentarios) está en inglés; el texto que se ve en la página sigue en español, como el resto del contenido del repositorio.
 
 - Un workflow (`.github/workflows/generate-site.yml`) ejecuta `python scripts/generate_site.py` y comitea `docs/` automáticamente en cada push a `main` que toque `recetas/`, `ingredientes/`, `plan/` o `scripts/`. No hace falta regenerarlo a mano salvo para previsualizar en local antes de comitear.
 - El mismo workflow corre también en los `pull_request` que tocan esas rutas, pero solo genera el sitio (sin comitear ni pushear) para que una receta con un YAML mal formado no se pueda fusionar a `main`. `scripts/generate_site.py` admite `--output <dir>` para generar en un directorio temporal sin tocar `docs/`, que es lo que usa el hook de pre-commit.

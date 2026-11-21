@@ -32,6 +32,7 @@ Si una adaptación estropea el plato de verdad (por ejemplo, un postre que depen
 - `pasos` es una lista con un elemento por paso, en el mismo orden y con las mismas técnicas, tiempos y temperaturas que la receta original, pero **redactados siempre con tus propias palabras**, nunca copiados ni traducidos casi literalmente del texto fuente. Usa un estilo directo y práctico, como en `recetas/borraja-con-almejas.yaml` (receta propia del usuario). Esto aplica también cuando la fuente es un enlace que has leído tú mismo.
 - Añade `fuente: <url>` con el enlace original. Si el usuario dicta una receta propia (no viene de internet), pon `fuente: propia` en vez de omitir la clave.
 - Añade `imagen: <url>` solo si el usuario da una URL. El campo es opcional: si no hay imagen, omite la clave entera (no escribas "pendiente" ni `null`).
+- Si el usuario pide una variante de una receta que ya existe (añadir o quitar un ingrediente, versión más ligera...), crea un fichero nuevo con la receta completa y añade `variante_de: <slug de la principal>` y `variante_resumen` (ver `references/esquema-receta.md`). La principal no puede ser a su vez una variante. Recalcula las cifras de la variante, no las copies de la principal.
 - Nombre de fichero: slug en minúsculas, sin acentos ni eñes, con guiones (`coliflor-especiada-con-yogur-y-granada.yaml`).
 - Tags en minúsculas, sin acentos, con guiones. Incluye ingrediente principal, tipo de plato, técnica y alguna etiqueta dietética relevante.
 - Pon cifras (kcal, proteína, cucharillas) como números sin unidades.
