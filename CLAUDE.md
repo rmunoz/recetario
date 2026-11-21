@@ -115,7 +115,7 @@ No inventes un ingrediente nuevo en este directorio por iniciativa propia: lo cr
 
 ## Skills
 
-- `receta-adaptada`: se usa cuando Ricardo pega una receta o dicta una propia. Adapta (si procede), escala, estima kcal, valora el encaje y crea el fichero.
+- `receta-adaptada`: se usa cuando Ricardo pega una receta o dicta una propia. Si viene en otro idioma, la traduce y convierte sus unidades a métrico. Adapta (si procede, incluida la regionalización de ingredientes poco comunes en España, con un informe aparte para validarla), escala, estima kcal, valora el encaje y crea el fichero.
 - `plan-semanal-comidas`: monta la semana con el desayuno fijo, comida, cena y merienda opcional, respetando los límites de arriba, e intenta incluir cada semana alguna receta que no se haya usado en semanas anteriores. Para leer las recetas usa `python .claude/skills/plan-semanal-comidas/scripts/read_recipes.py recetas/`, y para mirar el histórico de planes guardados, `python .claude/skills/plan-semanal-comidas/scripts/read_plans.py plan/` (ambos necesitan PyYAML). La generación del plan sigue siendo siempre a través de la skill (no automática), para poder ajustarlo antes de comitearlo.
 
 Cuando cambie una convención, actualiza a la vez este fichero y la skill afectada para que no se contradigan.
