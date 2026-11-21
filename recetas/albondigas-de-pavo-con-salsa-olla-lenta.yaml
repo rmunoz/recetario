@@ -1,0 +1,42 @@
+titulo: Albóndigas de pavo con salsa a la olla lenta
+tags: [pavo, albondigas, carne, salsa, olla-lenta, plato-principal]
+raciones: 2
+kcal_racion: 350
+proteina_racion_g: 35
+aceite_cucharillas: 1
+momento: [comida, cena]
+sodio: alto
+ingredientes:
+  - grupo: Albóndigas
+    items:
+      - texto: 1 huevo grande
+      - texto: 20 g de pan rallado panko (o pan rallado normal si no se encuentra)
+      - texto: 1 cucharada de perejil fresco picado (hojas y tallos), unos 10 g
+      - texto: 20 g de yogur griego 0 % (alto en proteína)
+      - texto: 1 diente de ajo picado
+      - texto: ½ chalota pequeña picada (o 2 cucharadas de cebolla picada)
+      - texto: ½ cucharadita rasa de cebolla en polvo (opcional)
+      - texto: ½ cucharadita de tomillo seco
+      - texto: ¼ cucharadita de semillas de apio (opcional; o un poco de apio fresco rallado muy fino)
+      - texto: ¼ cucharadita de romero seco
+      - texto: ½ cucharadita rasa de sal fina (unos 3 g)
+      - texto: pimienta negra recién molida, al gusto
+      - texto: 300 g de pavo picado (magro, 94 % o similar)
+      - texto: 1 cucharadita de aceite de oliva, para dorar
+        ingrediente: aceite-oliva
+  - grupo: Salsa
+    items:
+      - texto: 1 cucharadita rasa de maicena
+      - texto: 1 cucharadita de agua fría
+      - texto: 80 ml de caldo de pollo, a poder ser bajo en sal
+      - texto: zumo de ½ limón (1 cucharada, unos 15 ml)
+      - texto: 1 cucharadita de yogur griego 0 % (sustituye a la mantequilla original)
+      - texto: sal y pimienta negra, al gusto
+pasos:
+  - Batir el huevo en un bol grande. Añadir el pan rallado, el perejil picado, el yogur, el ajo, la chalota, la cebolla en polvo, el tomillo, las semillas de apio, el romero, la sal y la pimienta. Mezclar bien con un tenedor.
+  - Añadir el pavo picado y amasar con las manos hasta que la mezcla quede uniforme. Formar 3-4 albóndigas de unos 5 cm de diámetro y colocarlas en un plato.
+  - Calentar la cucharilla de aceite en una sartén antiadherente a fuego medio-alto. Dorar las albóndigas sin moverlas hasta que se forme una costra oscura por un lado, unos 3 minutos; darles la vuelta y dorar otro lado. Retirarlas del fuego y pasarlas a la olla de cocción lenta. Reservar la sartén para la salsa.
+  - Disolver la maicena en el agua fría en un bol pequeño hasta que quede sin grumos. Subir el fuego de la sartén a medio-alto, verter el caldo de pollo y remover raspando los restos dorados del fondo. Añadir la mezcla de maicena y remover hasta que la salsa burbujee y espese lo suficiente para cubrir el dorso de una cuchara, aproximadamente 1 minuto. Añadir el zumo de limón y sazonar con una pizca de sal y pimienta.
+  - Verter la salsa sobre las albóndigas en la olla de cocción lenta y cocinar a baja potencia 2 horas, hasta que estén bien hechas por dentro (71°C en el centro con un termómetro). Se mantienen bien en la función de mantener caliente varias horas más. Sin olla de cocción lenta, se pueden terminar tapadas a fuego bajo en la misma sartén unos 20-25 minutos, vigilando que no se peguen.
+  - Pasar las albóndigas a una fuente para servir. La salsa puede tener trocitos sueltos de carne; añadir la cucharadita de yogur y batir bien para que quede fina (para dejarla perfectamente lisa, pasarla por un colador fino). Servir las albóndigas con la salsa por encima.
+fuente: https://cooking.nytimes.com/recipes/793138315-slow-cooker-turkey-meatballs-and-gravy
