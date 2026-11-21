@@ -526,3 +526,42 @@ article h2 {
     padding: 0.45rem 0.4rem;
   }
 }
+
+/* Recipe variants */
+
+.variant-note {
+  margin: 0 0 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.variant-note a {
+  color: var(--color-accent);
+}
+
+.variants {
+  background: var(--color-accent-soft);
+  border-radius: var(--radius);
+  padding: 0.25rem 1rem 0.75rem;
+  margin: 1rem 0;
+}
+
+.variants h2 {
+  margin: 0.6rem 0 0.4rem;
+  font-size: 1rem;
+}
+
+.variants ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.variants a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.variant-stats {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}

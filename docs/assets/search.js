@@ -29,26 +29,43 @@
     });
   });
 
+  // Variants (cards with data-variant) stay out of the plain listing so a
+  // recipe with many variants doesn't crowd the rest; they only appear when
+  // a search or tag filter matches them.
+  var mainTotal = cards.filter(function (card) {
+    return !card.hasAttribute("data-variant");
+  }).length;
+
   function filter() {
     var query = normalize(input.value.trim());
     var exactTag = knownTags.hasOwnProperty(query);
-    var visible = 0;
+    var visibleMain = 0;
+    var visibleVariants = 0;
     cards.forEach(function (card) {
+      var isVariant = card.hasAttribute("data-variant");
       var matches;
       if (!query) {
-        matches = true;
+        matches = !isVariant;
       } else if (exactTag) {
         matches = (card.dataset.tags || "").split("|").indexOf(query) !== -1;
       } else {
         matches = card.dataset.search.indexOf(query) !== -1;
       }
-      card.style.display = matches ? "" : "none";
+      card.hidden = !matches;
       if (matches) {
-        visible += 1;
+        if (isVariant) {
+          visibleVariants += 1;
+        } else {
+          visibleMain += 1;
+        }
       }
     });
     if (counter) {
-      counter.textContent = visible + " de " + cards.length + " recetas";
+      var text = visibleMain + " de " + mainTotal + " recetas";
+      if (visibleVariants) {
+        text += " y " + visibleVariants + (visibleVariants === 1 ? " variante" : " variantes");
+      }
+      counter.textContent = text;
     }
   }
 
