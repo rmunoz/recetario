@@ -1,13 +1,14 @@
 titulo: Gyozas de verduras con curry y leche de coco
 tags: [gyozas, verdura, col, zanahoria, curry, leche-de-coco, asiatica, vegetariana, plato-principal]
 raciones: 2
-kcal_racion: 380
-proteina_racion_g: 10
+kcal_racion: 395
+proteina_racion_g: 11
 aceite_cucharillas: 2
 momento: [comida, cena]
 sodio: medio
 ingredientes:
-  - texto: 20 obleas de gyoza congeladas (unos 140 g)
+  - texto: 20 obleas de gyoza congeladas (160 g)
+    ingrediente: obleas-gyoza
   - texto: "Relleno:"
   - texto: 150 g de repollo
   - texto: 1 zanahoria pequeña (unos 50 g)

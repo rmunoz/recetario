@@ -3,13 +3,14 @@ variante_de: gyozas-de-verduras-con-curry-y-leche-de-coco
 variante_resumen: Relleno de ternera picada y champiñones, con más proteína
 tags: [gyozas, ternera, carne-picada, champinones, setas, curry, leche-de-coco, asiatica, plato-principal, alta-en-proteina]
 raciones: 2
-kcal_racion: 415
-proteina_racion_g: 22
+kcal_racion: 430
+proteina_racion_g: 23
 aceite_cucharillas: 1
 momento: [comida, cena]
 sodio: medio
 ingredientes:
-  - texto: 20 obleas de gyoza congeladas (unos 140 g)
+  - texto: 20 obleas de gyoza congeladas (160 g)
+    ingrediente: obleas-gyoza
   - texto: "Relleno:"
   - texto: 120 g de carne picada de ternera magra
   - texto: 100 g de champiñones

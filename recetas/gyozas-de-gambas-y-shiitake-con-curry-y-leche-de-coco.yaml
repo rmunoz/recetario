@@ -3,13 +3,14 @@ variante_de: gyozas-de-verduras-con-curry-y-leche-de-coco
 variante_resumen: Relleno de gambas y shiitake, con más proteína
 tags: [gyozas, gambas, marisco, shiitake, setas, curry, leche-de-coco, asiatica, plato-principal, alta-en-proteina]
 raciones: 2
-kcal_racion: 395
-proteina_racion_g: 20
+kcal_racion: 410
+proteina_racion_g: 21
 aceite_cucharillas: 1
 momento: [comida, cena]
 sodio: medio
 ingredientes:
-  - texto: 20 obleas de gyoza congeladas (unos 140 g)
+  - texto: 20 obleas de gyoza congeladas (160 g)
+    ingrediente: obleas-gyoza
   - texto: "Relleno:"
   - texto: 120 g de gambas peladas
   - texto: 100 g de setas shiitake frescas
